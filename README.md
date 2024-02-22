@@ -106,3 +106,11 @@ to survive with a reduced workforce.
 ## How does the GHS AI Engine works?
 
 GHS AI Engine is based on a [Reinforcement Learning with Human Feedback Model](/doc/rlhf.md).
+
+## Where do we start? The GHS MVP
+
+There is no better way to start than building an initial MVP that could help us understand
+better all the fundamental problems associated with the AI models applied to Git and Gerrit repositories
+and explore different options.
+
+See more details on the [GHS MVP definition](MVP.md).
