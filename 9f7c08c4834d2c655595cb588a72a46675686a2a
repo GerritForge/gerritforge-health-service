@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe89f3d_384c2841",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-23T13:26:21Z",
+      "side": 1,
+      "message": "Super cool idea! I\u0027m looking forward to the event.",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4baee593_f3f2a3d0",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-23T13:26:21Z",
+      "side": 1,
+      "message": "Does the team have access to any example data from staging or production environments? Some real-world data (even if it is just for a subset of these measures) would be super useful for training/evaluating the decision models.",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a42c8fa_f727f424",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-23T13:26:21Z",
+      "side": 1,
+      "message": "We will likely need to think about reward/penalty functions to feedback to the learner. Phrased another way, how will we teach the learner that a decision it took had a positive or negative impact? Any thoughts about this?",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599009bb_118670cd",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-23T13:26:21Z",
+      "side": 1,
+      "message": "I really like the RL idea! In addition, we can experiment with simple rule-based approaches. For example, one approach that jumps to mind is to use [control charts](https://en.wikipedia.org/wiki/Control_chart), which simply take decisions when tracked measures cross critical thresholds. In the worst case, such a rule-based approach would serve as a baseline to which the RL could be compared.",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
