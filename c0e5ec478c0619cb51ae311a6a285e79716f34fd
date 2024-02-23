@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d00c0d3_db4b58a4",
+        "filename": "MVP.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-23T09:31:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7cee55d_3202340c",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "c0e5ec478c0619cb51ae311a6a285e79716f34fd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b4824b1_59bbd87c",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-23T09:28:02Z",
       "side": 1,
       "message": "Why Git *or* Gerrit? Does reducing the scope to Gerrit admins simplify the MVP? We ultimately want this to work for any git clone, no?",
+      "revId": "c0e5ec478c0619cb51ae311a6a285e79716f34fd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48809e64_51a89e7f",
+        "filename": "MVP.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-23T09:31:26Z",
+      "side": 1,
+      "message": "\u003e Why Git *or* Gerrit? Does reducing the scope to Gerrit admins simplify the MVP? \n\nYes, it reduces the effort a lot.\n\n\u003e We ultimately want this to work for any git clone, no?\n\nOne thing is _ultimately_ another thing is _minimal_. Supporting one *OR* the other makes it minimal. MVP is the 1st iteration of many more 😊",
+      "parentUuid": "8b4824b1_59bbd87c",
       "revId": "c0e5ec478c0619cb51ae311a6a285e79716f34fd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
