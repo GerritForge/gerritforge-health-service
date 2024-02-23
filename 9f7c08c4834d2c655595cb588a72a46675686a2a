@@ -41,6 +41,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1b278fa_14a90c77",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-23T16:11:46Z",
+      "side": 1,
+      "message": "\u003e Whilst git protocol-level data is now exposed as metrics by Gerrit, such metrics are not per-project.\n\u003e \n\u003e The only storage of git protocol-level metrics for git-upload-pack _per project_ that I know of is the sshd_log.\n\u003e \n\u003e Does that match your understanding too @luca.milanesio@gmail.com?\n\u003e \n\u003e If this is true, effectively it means that we will be blind to projects that are accessed exclusively over HTTP protocol and that we need to choose projects significantly accessed over SSH.\n\nThe MVP isn\u0027t implemented yet 😊 therefore that\u0027s definitely something we\u0027ll need to  write, pretty much like the rest of the code and algorithms in this MVP.",
+      "parentUuid": "ff410923_8b6bcab4",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 74
+      },
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4baee593_f3f2a3d0",
@@ -89,6 +113,30 @@
       "writtenOn": "2024-02-23T15:48:59Z",
       "side": 1,
       "message": "Since Gerrithub (and likely other Gerrit installations) serve multiple git repositories, CPU and System utilization metrics at any given observation point will be a function of the _overall_ utilization of the system, not exclusively of the observed repositories.\n\nHow can we measure CPU and system utilization ignoring any other, unrelated factor that might be influencing them (i.e. another GC is happening elsewhere)\n\nI know that both HTTP/SSH logs provide operation-specific metrics (total CPU time to execute command, user-mode CPU time to execute command, memory to execute command), should we measure this metric as opposed to the overall system utilization metrics?",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dfeca60_6b2fc912",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-23T16:11:46Z",
+      "side": 1,
+      "message": "\u003e Since Gerrithub (and likely other Gerrit installations) serve multiple git repositories, CPU and System utilization metrics at any given observation point will be a function of the _overall_ utilization of the system, not exclusively of the observed repositories.\n\nYep, and that\u0027s the metric we are interested in. If the system is running slowly, we may NOT want to put more pressure to the system, independently from where the load is coming from.\n\n\u003e How can we measure CPU and system utilization ignoring any other, unrelated factor that might be influencing them (i.e. another GC is happening elsewhere)\n\nWhy? We are interested in the overall system metrics.\n\n\u003e I know that both HTTP/SSH logs provide operation-specific metrics (total CPU time to execute command, user-mode CPU time to execute command, memory to execute command), should we measure this metric as opposed to the overall system utilization metrics?\n\nNo, if the system is struggling, there is no point killing it with a GC activity isn\u0027t it?",
+      "parentUuid": "ba90cf04_9bc687f0",
       "range": {
         "startLine": 50,
         "startChar": 3,
