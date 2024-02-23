@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f79cd3a_68719602",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-02-23T09:25:49Z",
+      "side": 1,
+      "message": "softmax? https://en.wikipedia.org/wiki/Softmax_function",
+      "range": {
+        "startLine": 71,
+        "startChar": 71,
+        "endLine": 71,
+        "endChar": 82
+      },
+      "revId": "92f807467b1f475a486f30869e0a4867ca3761ae",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
