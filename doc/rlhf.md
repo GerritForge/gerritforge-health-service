@@ -23,9 +23,9 @@ They are both very popular, a [comparative analysis](https://viso.ai/deep-learni
 shows that whilst TensorFlow has been very much used in the past and being very much
 supported at runtime, PyTorch has a wider community support and libraries.
 
-There are also more traditional approaches based on rule-based systems and fuzzylogic, which
-is based on a more static definition of the rules to achieve the optimal result rather
-than learning.
+There are also more traditional approaches based on rule-based systems and
+[fuzzylogic](doc/fuzzy_logic.md), which is based on a more static definition of the rules to
+achieve the optimal result rather than learning.
 
 ## Community
 
