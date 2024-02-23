@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff410923_8b6bcab4",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-02-23T15:48:59Z",
+      "side": 1,
+      "message": "Whilst git protocol-level data is now exposed as metrics by Gerrit, such metrics are not per-project.\n\nThe only storage of git protocol-level metrics for git-upload-pack _per project_ that I know of is the sshd_log.\n\nDoes that match your understanding too @luca.milanesio@gmail.com?\n\nIf this is true, effectively it means that we will be blind to projects that are accessed exclusively over HTTP protocol and that we need to choose projects significantly accessed over SSH.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 74
+      },
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4baee593_f3f2a3d0",
         "filename": "MVP.md",
         "patchSetId": 2
@@ -49,6 +72,29 @@
       "side": 1,
       "message": "Yes, we do have access to lots of existing historical data on GerritHub, with the repository names redacted of course.",
       "parentUuid": "4baee593_f3f2a3d0",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba90cf04_9bc687f0",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-02-23T15:48:59Z",
+      "side": 1,
+      "message": "Since Gerrithub (and likely other Gerrit installations) serve multiple git repositories, CPU and System utilization metrics at any given observation point will be a function of the _overall_ utilization of the system, not exclusively of the observed repositories.\n\nHow can we measure CPU and system utilization ignoring any other, unrelated factor that might be influencing them (i.e. another GC is happening elsewhere)\n\nI know that both HTTP/SSH logs provide operation-specific metrics (total CPU time to execute command, user-mode CPU time to execute command, memory to execute command), should we measure this metric as opposed to the overall system utilization metrics?",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 50,
+        "endChar": 59
+      },
       "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
