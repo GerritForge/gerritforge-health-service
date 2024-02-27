@@ -184,6 +184,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7d3c5ea_84ed0d1b",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2024-02-27T18:37:42Z",
+      "side": 1,
+      "message": "\u003e We will likely need to think about reward/penalty functions to feedback to the learner. Phrased another way, how will we teach the learner that a decision it took had a positive or negative impact? Any thoughts about this?\n\n@shane.mcintosh@uwaterloo.ca I tried to put together a high-level proposal here, Id9bc5d3e, where I also talk about the reward/penalties.\nI am a total newbie to the AI world, so be gentle :P\n\nI will try to put more info there before the hackathon.",
+      "parentUuid": "4c9563e8_0e8e4ba5",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "599009bb_118670cd",
         "filename": "MVP.md",
         "patchSetId": 2
