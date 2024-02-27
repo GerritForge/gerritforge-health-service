@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36741d8_8aadcc31",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-02-27T19:29:23Z",
+      "side": 1,
+      "message": "@ponch78@gmail.com, I think the length of the learning phase is a critical aspect of this challenge.\n\nHow can we afford to have timely-acceptable epoch cycles, when we need to wait for an entire GC cycle (or repack, bitmap creation, etc)?\n\nWouldn\u0027t the learning phase be bottlenecked by the eager-time-consuming nature of the git operations?",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 47
+      },
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
