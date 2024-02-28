@@ -22,6 +22,30 @@
       },
       "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a794be_b7fb2bca",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2024-02-28T07:31:06Z",
+      "side": 1,
+      "message": "\u003e How can we afford to have timely-acceptable epoch cycles, when we need to wait for an entire GC cycle (or repack, bitmap creation, etc)?\n\nGood question. I was reading about RUDDER [1]. I wonder if we can use the delayed reward model presented in the example for our case. @shane.mcintosh@uwaterloo.ca do you have any experience with it?\n\n[1]: https://ml-jku.github.io/rudder/",
+      "parentUuid": "a36741d8_8aadcc31",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 47
+      },
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
