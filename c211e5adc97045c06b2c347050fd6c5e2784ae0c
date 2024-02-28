@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fbc3cdf_55db86ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-28T22:25:45Z",
+      "side": 1,
+      "message": "Sorry for replying so slowly... Teaching is really draining a lot of my time these days!\n\nIn any case, I think this direction is great. I think we are discussing the right things. My comments are mainly about the cost/reward because I think that is where we will make or break the solution.",
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15373243_874ab853",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-28T22:25:45Z",
+      "side": 1,
+      "message": "I think that, ideally, we would want a cost/reward function to reflect to the learner as much as we can about the impact of its decision. I think it is important for the cost function to reflect the performance penalty and resource cost components that you have outlined above, but we also want to reflect the impact of the choice to the learner. For example, I think that @luca.milanesio@gmail.com was saying that the same decision, e.g., run gc, could have a negative impact on system performance if it is taken at the wrong time, e.g., when the system is under heavy load. Using this function creatively is where we can feed the learner hints so that it avoids taking that decision in the future.",
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a36741d8_8aadcc31",
@@ -62,6 +96,30 @@
       "side": 1,
       "message": "@syntonyze@gmail.com here [1] some other examples to tackle it. \n\n[1]: https://ai.stackexchange.com/questions/25178/how-to-deal-with-the-time-delay-in-reinforcement-learning",
       "parentUuid": "18a794be_b7fb2bca",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 47
+      },
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04074eb9_2af1229e",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-02-28T22:25:45Z",
+      "side": 1,
+      "message": "I like the idea of delayed rewards. I think we will also need to set aside some historical data for the tool to be trained and evaluated. With such an environment, we can experimentally check where we can strike a reasonable balance for the model accuracy vs. learning speed trade-off.",
+      "parentUuid": "eed56baf_97b3a621",
       "range": {
         "startLine": 71,
         "startChar": 0,
