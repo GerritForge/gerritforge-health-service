@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c4a1561_b7af9a93",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2024-03-01T11:05:58Z",
+      "side": 1,
+      "message": "\u003e I think it is important for the cost function to reflect the performance penalty and resource cost components that you have outlined above, but we also want to reflect the impact of the choice to the learner.\n\nThis is what I tried to capture in the \"performance penalty\" part of the cost.\n\n\u003e run gc, could have a negative impact on system performance if it is taken at the wrong time\n\nYep, I am using both performance metrics (system load) and \"repository shape\" (number of packfiles, bitmaps) to define the state. Hence I believe the aspect of performance degradation on those two fronts should me captured (maybe in a too simplistic way to start with).\n\nIs that what you were after or were you referring to something else?",
+      "parentUuid": "15373243_874ab853",
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a36741d8_8aadcc31",
         "filename": "doc/solution-proposal.md",
         "patchSetId": 3
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "I like the idea of delayed rewards. I think we will also need to set aside some historical data for the tool to be trained and evaluated. With such an environment, we can experimentally check where we can strike a reasonable balance for the model accuracy vs. learning speed trade-off.",
       "parentUuid": "eed56baf_97b3a621",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 47
+      },
+      "revId": "c211e5adc97045c06b2c347050fd6c5e2784ae0c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4666ae35_9e3fd19b",
+        "filename": "doc/solution-proposal.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2024-03-01T11:05:58Z",
+      "side": 1,
+      "message": "\u003e I think we will also need to set aside some historical data for the tool to be trained and evaluated\n\nWe can use Gerrithub data. However, we don\u0027t have much repository maintenance going on there.\n\nIt might make sense to put in place something before the hackathon so we could have some production like data sets. @luca.milanesio@gmail.com WDYT?\n\nSomething I am struggle with is how to fit our case in Gymnasium [1], a tool we were thinking of using for our simulations. @shane.mcintosh@uwaterloo.ca have you ever used it? Is it something used in the academic world? \n\n[1]: https://gymnasium.farama.org/index.html",
+      "parentUuid": "04074eb9_2af1229e",
       "range": {
         "startLine": 71,
         "startChar": 0,
