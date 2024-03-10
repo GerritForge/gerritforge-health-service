@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aca8d03_590dbd00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-10T14:04:16Z",
+      "side": 1,
+      "message": "@luca.milanesio@gmail.com, can you help me underatand what do you mean by collecting metrics?\n\nIs this plugin just going to collect and expose metrics to prometheus (I can see `kamon-prometheus` as a dependency) or is the intention to feed directly (somehow) GHS?",
+      "revId": "6abbb0fd2179982f667c071827437cd023adb619",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072b5e83_38a568c9",
+        "filename": "components/collectors/gerrit/src/main/resources/application.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-10T14:04:16Z",
+      "side": 1,
+      "message": "This does not exist and starting the plugin gives:\n\n```\njava.lang.ClassNotFoundException: com.gerritforge.ghs.http.GhsMetricsServer\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 66,
+        "endLine": 1,
+        "endChar": 82
+      },
+      "revId": "6abbb0fd2179982f667c071827437cd023adb619",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
