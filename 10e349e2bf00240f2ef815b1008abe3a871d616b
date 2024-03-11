@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e68755_b0eb940c",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/ActionResult.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-11T16:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97223c2a_c4be714c",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "10e349e2bf00240f2ef815b1008abe3a871d616b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c290d82_2d81d3cb",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-11T15:57:16Z",
       "side": 1,
       "message": "```suggestion\n    this(isSucessful, null);\n```",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "10e349e2bf00240f2ef815b1008abe3a871d616b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e9228e_d6deab44",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/ActionResult.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-11T16:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c290d82_2d81d3cb",
       "range": {
         "startLine": 10,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85183fd6_91695e2e",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/ActionResult.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-11T16:05:46Z",
+      "side": 1,
+      "message": "We do not have findbugs dependency on that project so we cannot use Nullable annotation",
+      "parentUuid": "ac3c5647_0369224d",
+      "revId": "10e349e2bf00240f2ef815b1008abe3a871d616b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e89c2d67_41f5e55f",
@@ -87,6 +153,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d7317b_023aa8c1",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/ActionResult.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-11T16:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e89c2d67_41f5e55f",
+      "range": {
+        "startLine": 15,
+        "startChar": 19,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "10e349e2bf00240f2ef815b1008abe3a871d616b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ae33f63_447fc0d8",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-03-11T15:57:16Z",
       "side": 1,
       "message": "Unused method.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 3
+      },
+      "revId": "10e349e2bf00240f2ef815b1008abe3a871d616b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f9c46ef_36866e0a",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/ActionResult.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-11T16:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ae33f63_447fc0d8",
       "range": {
         "startLine": 26,
         "startChar": 0,
