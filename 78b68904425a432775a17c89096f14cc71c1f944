@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f53df687_2f745c2c",
+        "filename": "components/actions-executor/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "Let\u0027s target Java 11",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72aade6_d8ca5cb2",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "Should this be `action` instead?",
+      "range": {
+        "startLine": 19,
+        "startChar": 81,
+        "endLine": 19,
+        "endChar": 90
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e228979_eabc9aaa",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "```suggestion\n            logger.atSevere().withCause(e).log(\"Cannot find action class for action name:%s\", className);\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 19,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5f1c90_ef72996c",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "Not needed: it is already implicit with the `withCause(e)`\n\n\n```suggestion\n            logger.atSevere().withCause(e).log(\"Cannot instantiate action class %s\", className);\n```",
+      "range": {
+        "startLine": 21,
+        "startChar": 84,
+        "endLine": 21,
+        "endChar": 93
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "497d340c_2a4cd3ee",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "Not needed: it is already implicit with the `withCause(e)`\n\n\n```suggestion\n            logger.atSevere().withCause(e).log(\"Exception during the action execution. Action class: %s\", className);\n```",
+      "range": {
+        "startLine": 23,
+        "startChar": 103,
+        "endLine": 23,
+        "endChar": 114
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b23004e_51b58927",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/NothingAction.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:17:43Z",
+      "side": 1,
+      "message": "Can we add the description in the constructor maybe?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 63
+      },
+      "revId": "78b68904425a432775a17c89096f14cc71c1f944",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
