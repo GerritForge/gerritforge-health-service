@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4080b38_c3829c6b",
+        "filename": "components/collectors/gerrit/project/Dependencies.scala",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1019805
+      },
+      "writtenOn": "2024-03-11T08:57:22Z",
+      "side": 1,
+      "message": "Nit: misaligned",
+      "revId": "6abbb0fd2179982f667c071827437cd023adb619",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "072b5e83_38a568c9",
         "filename": "components/collectors/gerrit/src/main/resources/application.conf",
         "patchSetId": 1
