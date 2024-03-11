@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b933c9b_3724815d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T14:18:10Z",
+      "side": 1,
+      "message": "Running this on GerritHub.io, I see the most active repository in terms of:\n- Number of updates\n- Number of upload-packs\n- Size\n... is https://github.com/cue-lang/cue !",
+      "revId": "23f66b60a3c8531d50caf94cb60c752b6d106d8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
