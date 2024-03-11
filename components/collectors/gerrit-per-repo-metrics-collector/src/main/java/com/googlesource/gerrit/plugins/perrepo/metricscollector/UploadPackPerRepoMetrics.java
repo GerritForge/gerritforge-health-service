@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.perrepo.metricscollector;
 import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.metrics.Description;
+import com.google.gerrit.metrics.Description.Units;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
@@ -55,6 +56,24 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
             bitmapIndexMisses = packStatistics.getBitmapIndexMisses();
           }
           return bitmapIndexMisses;
+        });
+
+    metricMaker.newCallbackMetric(
+        String.format("ghs/git-upload-pack/phase_searching_for_reuse/%s", configRepoName),
+        Long.class,
+        new Description(
+                String.format(
+                    "time jgit searched for deltas which can be reused for repo %s",
+                    configRepoName))
+            .setGauge()
+            .setUnit(Units.MILLISECONDS),
+        () -> {
+          PackStatistics packStatistics = lastStats.get();
+          long timeSearchingForReuse = -1;
+          if (packStatistics != null) {
+            timeSearchingForReuse = packStatistics.getTimeSearchingForReuse();
+          }
+          return timeSearchingForReuse;
         });
   }
 
