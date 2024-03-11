@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e16b017_73da9490",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:10:23Z",
+      "side": 1,
+      "message": "The activity of the cue-lang/cue project is:\n\n\n  17551 HTTP POST /changes/cue-lang/cue~NNNNNNN/revisions/N/review\n   6580 ReceiveCommits\n   1920 HTTP POST /changes/cue-lang/cue~NNNNNNN/revisions/N/submit\n     56 HTTP POST /changes/cue-lang/cue~NNNNNNN/abandon\n     64 HTTP DELETE /changes/cue-lang/cuelang.org~NNNNNNN/attention/NNNNNNN\n     52 HTTP POST /changes/cue-lang/cue~NNNNNNN/ready\n     48 SSH gerrit set-reviewers -a email SHA1\n      4 HTTP PUT /projects/cue-lang/cue/tags/vN.N.N-alpha.N",
+      "revId": "f3bed7ff27e85195450e2a1b09d133c16d604ec4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
