@@ -2,10 +2,17 @@ package com.gerritforge.ghs.actions;
 
 import com.google.common.flogger.FluentLogger;
 
+import static java.lang.System.exit;
+
 public class Main {
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   public static void main(String[] args) {
+    if (args.length == 0) {
+      printUse();
+      exit(-1);
+    }
+
     String action = args[0];
     String repositoryPath = args[1];
     String className = Main.class.getPackageName() + "." + action;
@@ -23,5 +30,10 @@ public class Main {
       logger.atSevere().withCause(e).log(
           "Exception during the action execution. Action class: %s", className);
     }
+  }
+
+  private static void printUse() {
+    logger.atInfo().log("Use: java %s <actionName>", Main.class.getName());
+    System.err.printf("Use: java %s <actionName>%n", Main.class.getName());
   }
 }
