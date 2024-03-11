@@ -106,6 +106,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "396a9f2f_19883e32",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-11T16:21:26Z",
+      "side": 1,
+      "message": "Similar to [this](https://gerrit-review.googlesource.com/c/gerrit/+/406237/comment/dc2804c6_2aa1a857/), should this not be a histogram?",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce7ec820_6960ae0c",
         "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
         "patchSetId": 3
