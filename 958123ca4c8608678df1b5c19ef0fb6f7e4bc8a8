@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4600bd42_58cfe6fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7bcde67_cc615116",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2ee18705_974fe5d1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -64,6 +88,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23217b0_a72bc1f8",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53a0b21d_bff0ca80",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "856b8c0a_42a8d07a",
@@ -83,6 +131,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "360ec25b_9dfe3f03",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Plugin receives the `com.google.gerrit.server.plugins.PluginMetricMaker` instance of the `MetricMaker` and it removes the metrics upon the plugin unload (which is also the part of the plugin reload) so there is no need to do it manually. Having said that it makes sense to ensure that plugin gets `restarted` (unloaded first and then loaded) so that there is no collision on busy servers when metrics are created for newer version version of plugin before they are actually unloaded.",
+      "parentUuid": "856b8c0a_42a8d07a",
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d17c75_d4175299",
         "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
         "patchSetId": 3
@@ -94,6 +160,30 @@
       "writtenOn": "2024-03-11T15:52:22Z",
       "side": 1,
       "message": "`ghs` ? So all the metrics that we export for GHS can be easily identified and extracted.\n\n\n```suggestion\n        String.format(\"ghs/git-upload-pack/bitmap_index_misses/%s\", configRepoName),\n```",
+      "range": {
+        "startLine": 38,
+        "startChar": 23,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e87e0210_0b69cacd",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d17c75_d4175299",
       "range": {
         "startLine": 38,
         "startChar": 23,
@@ -129,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f9903f4_21a84c72",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Not really, we are interested in the snapshot value at check time.",
+      "parentUuid": "396a9f2f_19883e32",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce7ec820_6960ae0c",
         "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
         "patchSetId": 3
@@ -152,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05e80df9_3beaba56",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Added the following reges:\n`/(test-repo)((/git-upload-pack)| )`\n\nand tested with the following examples:\n* `HTTP POST /test-repo/git-upload-pack (N/A from [0:0:0:0:0:0:0:1])` - found\n* `SSH git-upload-pack /test-repo (admin)` - found\n* `HTTP POST foo/test-repo/git-upload-pack (N/A from [0:0:0:0:0:0:0:1])` - NOT found\n* `SSH git-upload-pack /test-repo/bar (admin)` - NOT found\n* `SSH git-upload-pack foo/test-repo (admin)` - NOT found",
+      "parentUuid": "ce7ec820_6960ae0c",
+      "range": {
+        "startLine": 55,
+        "startChar": 50,
+        "endLine": 55,
+        "endChar": 64
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6bc731b_8300bb0b",
         "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/resources/Documentation/about.md",
         "patchSetId": 3
@@ -163,6 +301,30 @@
       "writtenOn": "2024-03-11T15:52:22Z",
       "side": 1,
       "message": "git-upload-pack",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11e2140_ed5bce35",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/resources/Documentation/about.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:03:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6bc731b_8300bb0b",
       "range": {
         "startLine": 3,
         "startChar": 12,
