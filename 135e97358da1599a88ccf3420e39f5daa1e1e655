@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3a3f057_747954be",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/BUILD",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-11T17:16:31Z",
+      "side": 1,
+      "message": "nit: fix the indentation",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "135e97358da1599a88ccf3420e39f5daa1e1e655",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
