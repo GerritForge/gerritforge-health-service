@@ -57,6 +57,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>6.9.0.202403050737-r</version>
+    </dependency>
+    <dependency>
       <groupId>com.google.flogger</groupId>
       <artifactId>flogger</artifactId>
       <version>0.8</version>
