@@ -1,0 +1,11 @@
+.DS_Store
+.bsp
+.classpath
+.idea
+.project
+.settings
+.vscode/
+id_rsa*
+metals.sbt
+simulation.log
+target
