@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68b6f712_026bf11e",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T16:17:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a98ccd15_4a77be17",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "f433b53f5d99f44fa15eb91e2f35362eb503a109",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71899af0_54b99b7e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-11T16:16:16Z",
       "side": 1,
       "message": "we have two params, class name and repo path",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 3
+      },
+      "revId": "f433b53f5d99f44fa15eb91e2f35362eb503a109",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ee9733_1856530d",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/Main.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T16:17:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71899af0_54b99b7e",
       "range": {
         "startLine": 35,
         "startChar": 1,
