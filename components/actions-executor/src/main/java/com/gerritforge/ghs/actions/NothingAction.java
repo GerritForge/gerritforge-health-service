@@ -1,10 +1,9 @@
 package com.gerritforge.ghs.actions;
 
-import java.util.concurrent.Callable;
 
-public class NothingAction implements Callable<ActionResult> {
+public class NothingAction implements Action {
   @Override
-  public ActionResult call() throws Exception {
+  public ActionResult apply(String repositoryPath) {
     return new ActionResult(true, "NoOp action executed successfully");
   }
 }
