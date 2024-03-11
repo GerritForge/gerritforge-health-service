@@ -147,6 +147,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd03756_0b50cf83",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T09:42:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e675b55a_027bfcb6",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a42c8fa_f727f424",
@@ -200,6 +218,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f3a43f0_17de1659",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T09:42:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b7d3c5ea_84ed0d1b",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "599009bb_118670cd",
@@ -231,6 +267,24 @@
       "side": 1,
       "message": "\u003e I really like the RL idea! In addition, we can experiment with simple rule-based approaches. For example, one approach that jumps to mind is to use [control charts](https://en.wikipedia.org/wiki/Control_chart), which simply take decisions when tracked measures cross critical thresholds. In the worst case, such a rule-based approach would serve as a baseline to which the RL could be compared.\n\nExactly, the traditional rule-approach we know it works (Git uses a simple threshold-based decision to run GC automatically); however, we have seen (and paid with our blood in production fires) that the simple rule-based approach isn\u0027t flexible, adaptable and does not take all metrics into consideration.\n\nExample: the auto-gc mechanism may decide to start a full GC of a mono-repo (*very expensive indeed* !) in the middle of the production peak traffic, causing a global outage. Even tough the rule was applied, it did not take into consideration other factors and most importantly cannot self-evolve based on its own failings.",
       "parentUuid": "599009bb_118670cd",
+      "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bfcb888_1538a23c",
+        "filename": "MVP.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T09:42:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c70991f7_c54f02db",
       "revId": "9f7c08c4834d2c655595cb588a72a46675686a2a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
