@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7bcde67_cc615116",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "git-upload-pack metrics collector for a single repo",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2ee18705_974fe5d1",
@@ -14,6 +37,115 @@
       "writtenOn": "2024-03-11T15:41:38Z",
       "side": 1,
       "message": "Verified locally that it works.",
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53a0b21d_bff0ca80",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "```suggestion\nclass UploadPackPerRepoMetrics implements PostUploadHook {\n```\n\nWe are really exposing the upload-pack per repo, not the Git repo metrics.",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856b8c0a_42a8d07a",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "For this change it is fine, however, it would be best to address the restart scenario:\n- Register the metrics in a LifecycleListener / start\n- De-register the metrics in a LifecycleListener / stop",
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26d17c75_d4175299",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "`ghs` ? So all the metrics that we export for GHS can be easily identified and extracted.\n\n\n```suggestion\n        String.format(\"ghs/git-upload-pack/bitmap_index_misses/%s\", configRepoName),\n```",
+      "range": {
+        "startLine": 38,
+        "startChar": 23,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7ec820_6960ae0c",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "If we have two repositories, `cue-lang/cue` and `cue-lang/cuelang.org`, when we will be matching both, which is unfortunate.",
+      "range": {
+        "startLine": 55,
+        "startChar": 50,
+        "endLine": 55,
+        "endChar": 64
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6bc731b_8300bb0b",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/resources/Documentation/about.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-11T15:52:22Z",
+      "side": 1,
+      "message": "git-upload-pack",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 24
+      },
       "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
