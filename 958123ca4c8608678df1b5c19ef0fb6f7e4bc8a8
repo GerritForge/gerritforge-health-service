@@ -147,6 +147,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b69592f_c1d415d7",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-12T13:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "360ec25b_9dfe3f03",
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26d17c75_d4175299",
@@ -302,6 +320,30 @@
       "side": 1,
       "message": "Added the following reges:\n`/(test-repo)((/git-upload-pack)| )`\n\nand tested with the following examples:\n* `HTTP POST /test-repo/git-upload-pack (N/A from [0:0:0:0:0:0:0:1])` - found\n* `SSH git-upload-pack /test-repo (admin)` - found\n* `HTTP POST foo/test-repo/git-upload-pack (N/A from [0:0:0:0:0:0:0:1])` - NOT found\n* `SSH git-upload-pack /test-repo/bar (admin)` - NOT found\n* `SSH git-upload-pack foo/test-repo (admin)` - NOT found",
       "parentUuid": "ce7ec820_6960ae0c",
+      "range": {
+        "startLine": 55,
+        "startChar": 50,
+        "endLine": 55,
+        "endChar": 64
+      },
+      "revId": "958123ca4c8608678df1b5c19ef0fb6f7e4bc8a8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55782e3_bb647fee",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/PerRepoGitMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-12T13:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e80df9_3beaba56",
       "range": {
         "startLine": 55,
         "startChar": 50,
