@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71fd9912_d851ce46",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/BitmapGenerationAction.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-12T10:52:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec36a2b0_2b27b3a4",
+      "range": {
+        "startLine": 48,
+        "startChar": 32,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "2437aa684d11b2c3b4bf14b5850ab1abad0a9d2f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20bffb12_242da01e",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-12T10:44:51Z",
       "side": 1,
       "message": "nit: just add for which SHA1 this was copied from and why we copied and pasted.",
+      "revId": "2437aa684d11b2c3b4bf14b5850ab1abad0a9d2f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fe2c746_1806bf58",
+        "filename": "components/actions-executor/src/main/java/com/gerritforge/ghs/actions/BitmapGenerator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005270
+      },
+      "writtenOn": "2024-03-12T10:52:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20bffb12_242da01e",
       "revId": "2437aa684d11b2c3b4bf14b5850ab1abad0a9d2f",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
