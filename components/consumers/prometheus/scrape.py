@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from scraper import Scraper
+from scraper import Scraper, Mode
 import argparse
 import time
 import schedule
@@ -21,15 +21,41 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Prometheus Scraper")
     parser.add_argument("url", help="prometheus URL to scrape")
     parser.add_argument("--bearer-token", help="Bearer token for authentication")
-    parser.add_argument("--repository", required=True, help="The repository to look after for detailed metrics")
-    parser.add_argument("--output-csv-file", required=True, help="The full path of the output csv file")
+    parser.add_argument(
+        "--repository",
+        required=True,
+        help="The repository to look after for detailed metrics",
+    )
+    parser.add_argument(
+        "--output-csv-file",
+        required=False,
+        help=f"The full path of the output csv file. Required in {Mode.batch.value} mode.",
+    )
+    parser.add_argument(
+        "--mode",
+        required=False,
+        type=Mode,
+        default=Mode.batch,
+        help=f"The scraper modes: '{Mode.batch.value}' (default) where it keeps getting and storing metrics in the "
+        + f"`--output-csv-file`, '{Mode.snapshot.value}' where it will get metrics and return them as JSON",
+    )
     args = parser.parse_args()
 
-    scraper = Scraper(args.repository.replace("-","_"), args.url, args.output_csv_file, args.bearer_token)
+    if args.mode == Mode.batch and args.output_csv_file is None:
+        parser.error(f"--mode {Mode.batch.value} requires `--output-csv-file` value.")
+
+    scraper = Scraper(
+        args.mode,
+        args.repository.replace("-", "_"),
+        args.url,
+        args.output_csv_file,
+        args.bearer_token,
+    )
 
     scraper.run()
-    schedule.every(1).minutes.do(scraper.run)
+    if args.mode == Mode.batch:
+        schedule.every(1).minutes.do(scraper.run)
 
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
