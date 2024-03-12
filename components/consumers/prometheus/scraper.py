@@ -17,6 +17,13 @@ import requests
 from prometheus_client.parser import text_string_to_metric_families
 import csv
 import time
+from enum import Enum
+import json
+
+
+class Mode(Enum):
+    batch = "batch"
+    snapshot = "snapshot"
 
 
 class Scraper:
@@ -24,7 +31,10 @@ class Scraper:
     __plugin_protocol_metrics_prefix = "plugins_git_repo_metrics_"
     __plugin_git_repo_metrics_prefix = "plugins_gerrit_per_repo_metrics_collector_ghs_"
 
-    def __init__(self, repository, prometheus_url, output_csv_file, bearer_token=None):
+    def __init__(
+        self, mode: Mode, repository, prometheus_url, output_csv_file, bearer_token=None
+    ):
+        self.mode = mode
         self.repository = repository
         self.url = prometheus_url
         self.output_csv_file = output_csv_file
@@ -69,8 +79,7 @@ class Scraper:
             sorted_keys = sorted(samples.keys())
             sorted_keys.insert(0, "timestamp")
             samples["timestamp"] = scraping_time
-            sorted_values = [samples[key] for key in sorted_keys]
-            self.store_metrics_as_csv(sorted_keys, sorted_values)
+            return (sorted_keys, samples)
 
         except Exception as e:
             print(f"Failed to parse data: {e}")
@@ -85,10 +94,26 @@ class Scraper:
             writer.writerow(values)
 
     def run(self):
-        print(f" * * * Scraping: {self.url}")
         scraping_time = int(time.time())
+        if self.mode == Mode.batch:
+            self.__batch(scraping_time)
+        else:
+            self.__snapshot(scraping_time)
+
+    def __batch(self, scraping_time):
+        print(f" * * * Scraping: {self.url}")
         data = self.fetch_data()
         if data:
-            self.parse_data(data, scraping_time)
+            (sorted_keys, samples) = self.parse_data(data, scraping_time)
+            sorted_values = [samples[key] for key in sorted_keys]
+            self.store_metrics_as_csv(sorted_keys, sorted_values)
         else:
             print("No data to parse.")
+
+    def __snapshot(self, scraping_time):
+        data = self.fetch_data()
+        if data:
+            (_, samples) = self.parse_data(data, scraping_time)
+            print(json.dumps(samples))
+        else:
+            print("{}")
