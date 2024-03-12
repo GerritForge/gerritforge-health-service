@@ -17,17 +17,22 @@ from prometheus_client.parser import text_string_to_metric_families
 import csv
 import time
 
+
 class Scraper:
-    def __init__(self, prometheus_url, output_csv_file, bearer_token=None):
+    __system_metrics = {"proc_cpu_num_cores", "proc_cpu_system_load", "proc_cpu_usage"}
+    __metrics_prefixes = {"plugins_git_repo_metrics_", "plugins_gerrit_per_repo_metrics_collector_ghs_"}
+
+    def __init__(self, repository, prometheus_url, output_csv_file, bearer_token=None):
+        self.repository = repository
         self.url = prometheus_url
-        self.output_csv_file=output_csv_file
+        self.output_csv_file = output_csv_file
         self.bearer_token = bearer_token
 
     def fetch_data(self):
         try:
             headers = {}
             if self.bearer_token:
-                headers['Authorization'] = f'Bearer {self.bearer_token}'
+                headers["Authorization"] = f"Bearer {self.bearer_token}"
 
             response = requests.get(self.url, headers=headers)
 
@@ -42,15 +47,21 @@ class Scraper:
 
     def parse_data(self, data, scraping_time):
         try:
-            for family in text_string_to_metric_families(data.decode('utf-8')):
+            for family in text_string_to_metric_families(data.decode("utf-8")):
                 for sample in family.samples:
-                    self.store_metrics_as_csv((scraping_time, sample[0], sample[2]))
+                    if sample.name in Scraper.__system_metrics or (
+                            sample.name.startswith(tuple(Scraper.__metrics_prefixes))
+                            and sample.name.endswith(self.repository)
+                    ):
+                        self.store_metrics_as_csv(
+                            (scraping_time, sample.name, sample.value)
+                        )
 
         except Exception as e:
             print(f"Failed to parse data: {e}")
 
     def store_metrics_as_csv(self, sample):
-        with open(self.output_csv_file, mode='a', newline='') as file:
+        with open(self.output_csv_file, mode="a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(sample)
 
