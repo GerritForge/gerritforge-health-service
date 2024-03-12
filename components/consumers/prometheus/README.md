@@ -57,11 +57,11 @@ exit
 ### virtualenv
 
 ```bash
-python3 scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metrics --bearer-token token --output-csv-file /tmp/metrics.csv
+python3 scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metrics --repository test-repo --bearer-token token --output-csv-file /tmp/metrics.csv
 ```
 
 ### pipenv
 
 ```bask
-python scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metrics --bearer-token token --output-csv-file /tmp/metrics.csv
+python scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metrics --repository test-repo --bearer-token token --output-csv-file /tmp/metrics.csv
 ```
