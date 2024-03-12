@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2467f16c_8058f188",
+        "filename": ".gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-12T10:26:41Z",
+      "side": 1,
+      "message": "nit: add `__pycache__/`",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 8
+      },
+      "revId": "c05e22f511e83e20035e10f59aaf7e49f250c446",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "166d67e7_547362f7",
+        "filename": "components/consumers/prometheus/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-12T10:26:41Z",
+      "side": 1,
+      "message": "nit: add steps for `pipenv`",
+      "revId": "c05e22f511e83e20035e10f59aaf7e49f250c446",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8189453_c24b149e",
+        "filename": "components/consumers/prometheus/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-12T10:26:41Z",
+      "side": 1,
+      "message": "nit: fails with\n```\nscrape.py: error: unrecognized arguments: --token token\n```\n\nit should be `--bearer-token`",
+      "range": {
+        "startLine": 35,
+        "startChar": 84,
+        "endLine": 35,
+        "endChar": 91
+      },
+      "revId": "c05e22f511e83e20035e10f59aaf7e49f250c446",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
