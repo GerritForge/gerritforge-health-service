@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fbf7830_e547d428",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-12T13:41:07Z",
+      "side": 1,
+      "message": "How about using the description documented at [1]\n\n```\ntime searching for reuse: time jgit searched for deltas which can be reused. That is the time spent matching existing representations against objects that will be transmitted, or that the client can be assumed to already have.\n```\n\n[1] https://gerrit-documentation.storage.googleapis.com/Documentation/3.9.1/logs.html#_sshd_log",
+      "revId": "8594ac1b1d310bf15daaef500c534a678a592edb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "947c5b27_d644d4c0",
+        "filename": "components/collectors/gerrit-per-repo-metrics-collector/src/main/java/com/googlesource/gerrit/plugins/perrepo/metricscollector/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-12T13:41:07Z",
+      "side": 1,
+      "message": "I wonder if `0` is misleading here.\nThe lack of the metric could be interpreted as a \"really fast\".\nShould we default to `-1`, so it is obvious that it is not a meaningful value, but rather the lack of it?",
+      "range": {
+        "startLine": 72,
+        "startChar": 10,
+        "endLine": 72,
+        "endChar": 41
+      },
+      "revId": "8594ac1b1d310bf15daaef500c534a678a592edb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
