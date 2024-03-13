@@ -22,6 +22,30 @@
       },
       "revId": "eac526a9aed27e7851ba4c46ebc979a30b5fc1d3",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b3d34d_7aa41814",
+        "filename": "components/gym-gerrit/state_enricher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-13T22:26:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95b351ef_68f3c836",
+      "range": {
+        "startLine": 46,
+        "startChar": 42,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "eac526a9aed27e7851ba4c46ebc979a30b5fc1d3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
