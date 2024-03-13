@@ -95,10 +95,12 @@ class Scraper:
 
     def run(self):
         scraping_time = int(time.time())
+        value = json.dumps("{}")
         if self.mode == Mode.batch:
             self.__batch(scraping_time)
         else:
-            self.__snapshot(scraping_time)
+            value = self.__snapshot(scraping_time)
+        return value
 
     def __batch(self, scraping_time):
         print(f" * * * Scraping: {self.url}")
@@ -114,6 +116,9 @@ class Scraper:
         data = self.fetch_data()
         if data:
             (_, samples) = self.parse_data(data, scraping_time)
-            print(json.dumps(samples))
+            jsonSamples = json.dumps(samples)
+            print(jsonSamples)
+            return jsonSamples
         else:
             print("{}")
+            return json.dumps("{}")
