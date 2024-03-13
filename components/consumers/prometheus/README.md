@@ -101,3 +101,17 @@ python scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metri
 ```
 cd .. && pip install -e prometheus && cd -
 ```
+
+## Docker
+
+### Build
+
+```
+docker build --no-cache -t gerritforge/ghs/gerrit-prometheus-scraper:$(git rev-parse --short HEAD) .
+```
+
+### Run
+
+```
+docker run --rm t/metrics.csv:/tmp/metrics.csv gerritforge/ghs/gerrit-prometheus-scraper:latest http://<gerrit-server>/plugins/metrics-reporter-prometheus/metrics --repository <repo-name> --bearer-token <token> --output-csv-file <output-file>
+```
