@@ -7,7 +7,7 @@ from gymnasium import spaces
 import os
 from scraper import Scraper,Mode
 import json
-
+from state_enricher import StateEnricher
 
 class GerritEnv(gym.Env):
     def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
@@ -139,4 +139,9 @@ class GerritEnv(gym.Env):
     def _get_state(self):
         # #TODO ignore lines with -1 in all fields
         state_json = self.scraper.run()
-        return json.loads(state_json)
+        state = json.loads(state_json)
+
+        # Mutates the state
+        StateEnricher(state, self.sanitized_repo_name).hydrate()
+
+        return state
