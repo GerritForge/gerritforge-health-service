@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import requests
 from prometheus_client.parser import text_string_to_metric_families
 import csv
@@ -47,23 +48,33 @@ class Scraper:
 
     def parse_data(self, data, scraping_time):
         try:
+            samples = {}
             for family in text_string_to_metric_families(data.decode("utf-8")):
+
                 for sample in family.samples:
                     if sample.name in Scraper.__system_metrics or (
                             sample.name.startswith(tuple(Scraper.__metrics_prefixes))
                             and sample.name.endswith(self.repository)
                     ):
-                        self.store_metrics_as_csv(
-                            (scraping_time, sample.name, sample.value)
-                        )
+                        samples[sample.name] = sample.value
+
+            sorted_keys = sorted(samples.keys())
+            sorted_keys.insert(0, "timestamp")
+            samples["timestamp"] = scraping_time
+            sorted_values = [samples[key] for key in sorted_keys]
+            self.store_metrics_as_csv(sorted_keys, sorted_values)
 
         except Exception as e:
             print(f"Failed to parse data: {e}")
 
-    def store_metrics_as_csv(self, sample):
+    def store_metrics_as_csv(self, keys, values):
+        add_header = False if os.path.exists(self.output_csv_file) else True
         with open(self.output_csv_file, mode="a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(sample)
+            if add_header:
+                writer.writerow(keys)
+                add_header = False
+            writer.writerow(values)
 
     def run(self):
         print(f" * * * Scraping: {self.url}")
