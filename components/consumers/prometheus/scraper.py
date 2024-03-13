@@ -85,7 +85,8 @@ class Scraper:
             print(f"Failed to parse data: {e}")
 
     def store_metrics_as_csv(self, keys, values):
-        add_header = False if os.path.exists(self.output_csv_file) else True
+        add_header = False if os.path.exists(self.output_csv_file) or os.stat(
+            self.output_csv_file).st_size == 0 else True
         with open(self.output_csv_file, mode="a", newline="") as file:
             writer = csv.writer(file)
             if add_header:
