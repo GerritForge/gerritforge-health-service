@@ -21,10 +21,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Prometheus Scraper")
     parser.add_argument("url", help="prometheus URL to scrape")
     parser.add_argument("--bearer-token", help="Bearer token for authentication")
-    parser.add_argument("--output-csv-file", required=True, help="the full path of the output csv file")
+    parser.add_argument("--repository", required=True, help="The repository to look after for detailed metrics")
+    parser.add_argument("--output-csv-file", required=True, help="The full path of the output csv file")
     args = parser.parse_args()
 
-    scraper = Scraper(args.url, args.output_csv_file, args.bearer_token)
+    scraper = Scraper(args.repository.replace("-","_"), args.url, args.output_csv_file, args.bearer_token)
 
     scraper.run()
     schedule.every(1).minutes.do(scraper.run)
