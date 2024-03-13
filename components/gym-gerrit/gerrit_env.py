@@ -5,14 +5,18 @@ import shutil
 import numpy as np
 from gymnasium import spaces
 import os
+from scraper import Scraper,Mode
+import json
+
 
 class GerritEnv(gym.Env):
-    def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath):
+    def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
+        prometheus_url = gerritUrl+"/plugins/metrics-reporter-prometheus/metrics"
         self.gerritUrl = gerritUrl
         self.gitRepositoryPath = gitRepositoryPath
         self.actionsJarPath = actionsJarPath
         self.repositoryName = repositoryName
-
+        self.scraper =  Scraper(mode=Mode.snapshot,repository=repositoryName, prometheus_url=prometheus_url,bearer_token=prometheus_bearer_token)
         self.action_space = spaces.Discrete(3)
 
         self._action_to_action_name = {
@@ -22,20 +26,20 @@ class GerritEnv(gym.Env):
         }
 
         
-        self.observations = ["plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses",
-                             "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse",
-                             "plugins_git_repo_metrics_numberofbitmaps",
-                             "plugins_git_repo_metrics_numberofdirectories",
-                             "plugins_git_repo_metrics_numberofemptydirectories",
-                             "plugins_git_repo_metrics_numberoffiles",
-                             "plugins_git_repo_metrics_numberofkeepfiles",
-                             "plugins_git_repo_metrics_numberoflooseobjects",
-                             "plugins_git_repo_metrics_numberoflooserefs",
-                             "plugins_git_repo_metrics_numberofpackedobjects",
-                             "plugins_git_repo_metrics_numberofpackedrefs",
-                             "plugins_git_repo_metrics_numberofpackfiles",
-                             "plugins_git_repo_metrics_sizeoflooseobjects",
-                             "plugins_git_repo_metrics_sizeofpackedobjects",
+        self.observations = ["plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+repositoryName,
+                             "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofbitmaps_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofdirectories_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofemptydirectories_"+repositoryName,
+                             "plugins_git_repo_metrics_numberoffiles_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofkeepfiles_"+repositoryName,
+                             "plugins_git_repo_metrics_numberoflooseobjects_"+repositoryName,
+                             "plugins_git_repo_metrics_numberoflooserefs_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofpackedobjects_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofpackedrefs_"+repositoryName,
+                             "plugins_git_repo_metrics_numberofpackfiles_"+repositoryName,
+                             "plugins_git_repo_metrics_sizeoflooseobjects_"+repositoryName,
+                             "plugins_git_repo_metrics_sizeofpackedobjects_"+repositoryName,
                              "proc_cpu_num_cores",
                              "proc_cpu_system_load",
                              "proc_cpu_usage"]
@@ -44,39 +48,39 @@ class GerritEnv(gym.Env):
 
     def build_ghs_obs_space(self, observations):
         lower_obs_bound = {
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses":-1,
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse":-1,
-            "plugins_git_repo_metrics_numberofbitmaps":0,
-            "plugins_git_repo_metrics_numberofdirectories":0,
-            "plugins_git_repo_metrics_numberofemptydirectories":0,
-            "plugins_git_repo_metrics_numberoffiles":0,
-            "plugins_git_repo_metrics_numberofkeepfiles":0,
-            "plugins_git_repo_metrics_numberoflooseobjects":0,
-            "plugins_git_repo_metrics_numberoflooserefs":0,
-            "plugins_git_repo_metrics_numberofpackedobjects":0,
-            "plugins_git_repo_metrics_numberofpackedrefs":0,
-            "plugins_git_repo_metrics_numberofpackfiles":0,
-            "plugins_git_repo_metrics_sizeoflooseobjects":0,
-            "plugins_git_repo_metrics_sizeofpackedobjects":0,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+self.repositoryName:-1,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.repositoryName:-1,
+            "plugins_git_repo_metrics_numberofbitmaps_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofdirectories_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofemptydirectories_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberoffiles_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofkeepfiles_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberoflooseobjects_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberoflooserefs_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofpackedobjects_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofpackedrefs_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_numberofpackfiles_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_sizeoflooseobjects_"+self.repositoryName:0,
+            "plugins_git_repo_metrics_sizeofpackedobjects_"+self.repositoryName:0,
             "proc_cpu_num_cores":0,
             "proc_cpu_system_load":0,
             "proc_cpu_usage":0,
         }
         higher_obs_bound = {
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses":+ np.inf,
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse":+ np.inf,
-            "plugins_git_repo_metrics_numberofbitmaps":+ np.inf,
-            "plugins_git_repo_metrics_numberofdirectories":+ np.inf,
-            "plugins_git_repo_metrics_numberofemptydirectories":+ np.inf,
-            "plugins_git_repo_metrics_numberoffiles":+ np.inf,
-            "plugins_git_repo_metrics_numberofkeepfiles":+ np.inf,
-            "plugins_git_repo_metrics_numberoflooseobjects":+ np.inf,
-            "plugins_git_repo_metrics_numberoflooserefs":+ np.inf,
-            "plugins_git_repo_metrics_numberofpackedobjects":+ np.inf,
-            "plugins_git_repo_metrics_numberofpackedrefs":+ np.inf,
-            "plugins_git_repo_metrics_numberofpackfiles":+ np.inf,
-            "plugins_git_repo_metrics_sizeoflooseobjects":+ np.inf,
-            "plugins_git_repo_metrics_sizeofpackedobjects":+ np.inf,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+self.repositoryName:+ np.inf,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofbitmaps_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofdirectories_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofemptydirectories_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberoffiles_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofkeepfiles_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberoflooseobjects_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberoflooserefs_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofpackedobjects_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofpackedrefs_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_numberofpackfiles_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_sizeoflooseobjects_"+self.repositoryName:+ np.inf,
+            "plugins_git_repo_metrics_sizeofpackedobjects_"+self.repositoryName:+ np.inf,
             "proc_cpu_num_cores":+ np.inf,
             "proc_cpu_system_load":+ np.inf,
             "proc_cpu_usage":+ np.inf,
@@ -88,7 +92,10 @@ class GerritEnv(gym.Env):
         return gym.spaces.Box(low, high, shape)
 
     def step(self, action):
-        #TODO scrape metrics before action
+        current_metrics = self._get_state()
+        print("Current metrics")
+        print(current_metrics)
+        
 
         temporaryRepoDirectory = "/tmp/"+self.repositoryName
         if os.path.exists(temporaryRepoDirectory):
@@ -113,36 +120,21 @@ class GerritEnv(gym.Env):
         if os.path.exists(temporaryRepoDirectory):
             shutil.rmtree(temporaryRepoDirectory)
 
-        #TODO scrape metrics after action
-        observation = self._get_state()
+        new_metrics = self._get_state()
+        print("New metrics")
+        print(new_metrics)
+        
+        observation = np.array([np.float32(new_metrics[o]) for o in self.observations])
+
         #Add truncated
         return observation, 1
 
     def get_current_state(self):
-        return self._get_state()
+        state = self._get_state()
+        return np.array([np.float32(state[o]) for o in self.observations])
 
 
     def _get_state(self):
         # #TODO ignore lines with -1 in all fields
-        # #TODO scrape metrics to get the current state
-        # #timestamp,plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses,plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_test_repo,plugins_git_repo_metrics_combinedrefssha1_test_repo,plugins_git_repo_metrics_numberofbitmaps_test_repo,plugins_git_repo_metrics_numberofdirectories_test_repo,plugins_git_repo_metrics_numberofemptydirectories_test_repo,plugins_git_repo_metrics_numberoffiles_test_repo,plugins_git_repo_metrics_numberofkeepfiles_test_repo,plugins_git_repo_metrics_numberoflooseobjects_test_repo,plugins_git_repo_metrics_numberoflooserefs_test_repo,plugins_git_repo_metrics_numberofpackedobjects_test_repo,plugins_git_repo_metrics_numberofpackedrefs_test_repo,plugins_git_repo_metrics_numberofpackfiles_test_repo,plugins_git_repo_metrics_sizeoflooseobjects_test_repo,plugins_git_repo_metrics_sizeofpackedobjects_test_repo,proc_cpu_num_cores,proc_cpu_system_load,proc_cpu_usage
-        # return np.array([1710252846,10.0,5.0,7.0,3.0,1.0,16.0,0.0,0.0,2.0,84.0,1.0,7.0,0.0,6075.0,10.0,3.0615234375,62.549751])
-
-        state = {'plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses': 10.0, 
-                'plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse': 5.0,  
-                'plugins_git_repo_metrics_numberofbitmaps': 7.0, 
-                'plugins_git_repo_metrics_numberofdirectories': 3.0, 
-                'plugins_git_repo_metrics_numberofemptydirectories': 1.0, 
-                'plugins_git_repo_metrics_numberoffiles': 16.0, 
-                'plugins_git_repo_metrics_numberofkeepfiles': 0.0, 
-                'plugins_git_repo_metrics_numberoflooseobjects': 0.0, 
-                'plugins_git_repo_metrics_numberoflooserefs': 2.0, 
-                'plugins_git_repo_metrics_numberofpackedobjects': 84.0, 
-                'plugins_git_repo_metrics_numberofpackedrefs': 1.0, 
-                'plugins_git_repo_metrics_numberofpackfiles': 7.0, 
-                'plugins_git_repo_metrics_sizeoflooseobjects': 0.0, 
-                'plugins_git_repo_metrics_sizeofpackedobjects': 6075.0, 
-                'proc_cpu_num_cores': 10.0, 
-                'proc_cpu_system_load': 3.0615234375, 
-                'proc_cpu_usage': 62.549751}
-        return np.array([state[o] for o in self.observations])
+        state_json = self.scraper.run()
+        return json.loads(state_json)
