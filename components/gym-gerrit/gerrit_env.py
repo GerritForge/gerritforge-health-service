@@ -47,13 +47,13 @@ class GerritEnv(gym.Env):
                              "proc_cpu_system_load",
                              "proc_cpu_usage"]
 
-        self._action_to_weight = {
-            0: 0,
-            1: 1,
-            2: 0.2
+        self._action_to_reward = {
+            0: 1,
+            1: 0,
+            2: 0.8
         }
 
-        self._cost_weights = {
+        self._reward_weights = {
             "bitmap_index_misses_pct": 1/3,
             "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.sanitized_repo_name: 1/3,
             "action": 1/3
@@ -144,46 +144,80 @@ class GerritEnv(gym.Env):
     def _calc_reward(self, pre, action, post):
         assert(pre.keys() == post.keys())
 
-        return self._cost_search_for_reuse(pre, post) + self._cost_bitmap_misses(pre, post) + self._cost_action(action)
+        return self._reward_search_for_reuse(pre, post) + self._reward_bitmap_misses(pre, post) + self._reward_action(action)
 
-    def _cost_search_for_reuse(self, pre, post):
+    def _reward_search_for_reuse(self, pre, post):
         key = 'plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_'+self.sanitized_repo_name
-        millis = post[key]
 
+        pre_bucket = self._search_for_reuse_bucket(pre[key])
+        post_bucket = self._search_for_reuse_bucket(post[key])
+
+        bucket_delta = pre_bucket - post_bucket
+
+        # When bucket jump is negative or non-existent, no cookie
+        reward = 0
+        if bucket_delta == 1:
+            # One bucket of improvement, small cookie
+            reward = 0.5
+        elif bucket_delta == 2:
+            # Maximum improvement, large cookie
+            reward = 1
+
+        return reward * self._reward_weights[key]
+
+    def _search_for_reuse_bucket(self, millis):
         # TODO: Make configurable or extract from jgit config
-        millis_max = 60000*5 
+        millis_max = 60000*5
         cp1 = 1000
         cp2 = 60000
 
-        weight = None
-        if millis < cp1:
-            weight = 0
-        elif millis < cp2:
-            weight = 0.2
-        else:
-            weight = 1
+        bucket = 2
+        if post[key] < cp1:
+            bucket = 0
+        elif post[key] < cp2:
+            bucket = 1
 
-        cost = None
-        if millis >= millis_max:
-            cost = 1
-        else:
-            cost = weight * (post[key] / millis_max)
+        return bucket
 
-        return cost * self._cost_weights[key]
-
-    def _cost_bitmap_misses(self, pre, post):
+    def _reward_bitmap_misses(self, pre, post):
         key = 'bitmap_index_misses_pct'
 
-        # TODO: Deltas?
+        # Default no cookie
+        reward = 0
+        if pre[key] < 0:
+            # Had no bitmap and now have bitmap, cookie size proportional to
+            # effectiveness of bitmap
+            if post[key] >= 0:
+                reward = 1-post[key]
 
-        return post[key] * self._cost_weights[key]
+        elif post[key] < 0:
+            # Had bitmap, but lost it, therefore, no cookie
+            # TODO: If actions include removal of bitmap, reconsider this
+            reward = 0
 
-    def _cost_action(self, action):
+        else:
+            # Had bitmap, and still have bitmap
+            delta = pre[key] - post[key]
+
+            if delta < 0:
+                # Things got worse, so no cookie
+                reward = 0
+            elif delta == 0:
+                # No effective change, small cookie
+                reward = 0.2
+            else:
+                # Things got better, large cookie (regardless of the magnitude of
+                # the improvement)
+                reward = 1
+
+        return reward * self._reward_weights[key]
+
+    def _reward_action(self, action):
         key = 'action'
 
-        # TODO: Compute actual cost of action?
+        # TODO: Compute actual reward of action?
 
-        return self._action_to_weight[action] * self._cost_weights[key]
+        return self._action_to_reward[action] * self._reward_weights[key]
 
     def _get_state(self):
         # #TODO ignore lines with -1 in all fields
