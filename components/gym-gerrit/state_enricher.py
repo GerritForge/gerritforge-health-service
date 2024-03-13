@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 class StateEnricher:
 
     def __init__(self, state: dict, repository_name):
@@ -23,10 +24,26 @@ class StateEnricher:
         return 100 * float(value) / float(max_value)
 
     def hydrate(self):
-        total_number_of_objects = self.state["plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name] + self.state[
-            "plugins_git_repo_metrics_numberofpackedobjects_" + self.repository_name]
+        total_number_of_objects = (
+            self.state[
+                "plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name
+            ]
+            + self.state[
+                "plugins_git_repo_metrics_numberofpackedobjects_" + self.repository_name
+            ]
+        )
 
         self.state["bitmap_index_misses_pct"] = self.normalize(
             self.state[
-                "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_" + self.repository_name],
-            total_number_of_objects)
+                "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
+                + self.repository_name
+            ],
+            total_number_of_objects,
+        )
+
+        self.state["loose_objects_pct"] = self.normalize(
+            self.state[
+                "plugins_git_repo_metrics_numberoflooserefs_" + self.repository_name
+            ],
+            total_number_of_objects,
+        )
