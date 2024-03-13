@@ -46,6 +46,18 @@ class GerritEnv(gym.Env):
                              "proc_cpu_system_load",
                              "proc_cpu_usage"]
 
+        self._action_to_weight = {
+            0: 0,
+            1: 1,
+            2: 0.2
+        }
+
+        self._cost_weights = {
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses": 1/3,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse": 1/3,
+            "action": 1/3
+        }
+
         self.observation_space = self.build_ghs_obs_space(self.observations)
 
     def build_ghs_obs_space(self, observations):
@@ -128,12 +140,55 @@ class GerritEnv(gym.Env):
         observation = np.array([np.float32(new_metrics[o]) for o in self.observations])
 
         #Add truncated
-        return observation, 1
+        return observation, self._calc_reward(current_metrics, action, new_metrics)
 
     def get_current_state(self):
         state = self._get_state()
         return np.array([np.float32(state[o]) for o in self.observations])
 
+    def _calc_reward(self, pre, action, post):
+        assert(pre.keys() == post.keys())
+
+        return self._cost_search_for_reuse(pre, post) + self._cost_bitmap_misses(pre, post) + self._cost_action(action)
+
+    def _cost_search_for_reuse(self, pre, post):
+        key = 'plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse'
+        millis = post[key]
+
+        # TODO: Make configurable or extract from jgit config
+        millis_max = 60000*5 
+        cp1 = 1000
+        cp2 = 60000
+
+        weight = None
+        if millis < cp1:
+            weight = 0
+        elif millis < cp2:
+            weight = 0.2
+        else:
+            weight = 1
+
+        cost = None
+        if millis >= millis_max:
+            cost = 1
+        else:
+            cost = weight * (post[key] / millis_max)
+
+        return cost * self._cost_weights[key]
+
+    def _cost_bitmap_misses(self, pre, post):
+        key = 'bitmap_index_misses_pct'
+
+        # TODO: Deltas?
+
+        return post[key] * self._cost_weights[key]
+
+    def _cost_action(self, action):
+        key = 'action'
+
+        # TODO: Compute actual cost of action?
+
+        return self._action_to_cost[action] * self._cost_weights[key]
 
     def _get_state(self):
         # #TODO ignore lines with -1 in all fields
