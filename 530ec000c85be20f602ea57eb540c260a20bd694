@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61ea49d_58b88689",
+        "filename": "components/consumers/prometheus/scrape.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-13T09:18:35Z",
+      "side": 1,
+      "message": "nit: this condition is not needed",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 75
+      },
+      "revId": "530ec000c85be20f602ea57eb540c260a20bd694",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48769569_da9837a0",
+        "filename": "components/consumers/prometheus/scraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-13T09:18:35Z",
+      "side": 1,
+      "message": "nit: could be defaulted to `null`",
+      "range": {
+        "startLine": 34,
+        "startChar": 54,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "530ec000c85be20f602ea57eb540c260a20bd694",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
