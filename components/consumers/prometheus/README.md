@@ -95,3 +95,9 @@ python scrape.py http://localhost:8080/plugins/metrics-reporter-prometheus/metri
   "timestamp": 1710284380
 }
 ```
+
+## Install it as a module
+
+```
+cd .. && pip install -e prometheus && cd -
+```
