@@ -114,6 +114,9 @@ class Scraper:
         data = self.fetch_data()
         if data:
             (_, samples) = self.parse_data(data, scraping_time)
-            print(json.dumps(samples))
+            jsonSamples = json.dumps(samples)
+            print(jsonSamples)
+            return jsonSamples
         else:
             print("{}")
+            return json.dumps("{}")
