@@ -172,9 +172,9 @@ class GerritEnv(gym.Env):
         cp2 = 60000
 
         bucket = 2
-        if post[key] < cp1:
+        if millis < cp1:
             bucket = 0
-        elif post[key] < cp2:
+        elif millis < cp2:
             bucket = 1
 
         return bucket
