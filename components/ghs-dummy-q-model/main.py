@@ -1,8 +1,8 @@
-import torch
 import numpy as np
 from gerrit_env import GerritEnv
 import argparse
 import configparser
+import sys
 
 
 if __name__ == "__main__":
@@ -62,6 +62,7 @@ if __name__ == "__main__":
             next_state = tuple(s)
             print("New state:")
             print(next_state)
+            sys.stdout.flush()
             # Update Q-value using Q-learning update rule
             if next_state not in Q:
                 Q[next_state] = [0, 0]  # Initialize Q-values for the next state
