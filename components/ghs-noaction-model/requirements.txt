@@ -1,0 +1,3 @@
+tensordict==0.2.1
+torchrl==0.2.1
+gymgerrit==0.0.2
