@@ -19,7 +19,7 @@ class GerritEnv(gym.Env):
         self.gitRepositoryPath = gitRepositoryPath
         self.actionsJarPath = actionsJarPath
         self.repositoryName = repositoryName
-        self.sanitized_repo_name = repositoryName.replace("-", "_")
+        self.sanitized_repo_name = repositoryName.replace("-", "_").replace("/", "_")
         self.scraper =  Scraper(mode=Mode.snapshot,
                                 repository=self.sanitized_repo_name,
                                 prometheus_url=prometheus_url,
