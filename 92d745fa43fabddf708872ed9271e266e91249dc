@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e40cfb_b5e69213",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1037775
+      },
+      "writtenOn": "2024-03-14T10:22:58Z",
+      "side": 1,
+      "message": "This is a great starting point. Let\u0027s be sure to make the following possible in the future:\n\n1. Persist the model state (i.e., map). Perhaps this could even be done at regular intervals (e.g., every N episodes, where N is configurable?)\n\n2. Allow sets of parameters to be swapped when the model is in:\n- Exploration/training mode (learning rate high, epsilon moderately high)\n- Evaluation/testing mode (learning rate low, epsilon low[er])",
+      "revId": "92d745fa43fabddf708872ed9271e266e91249dc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
