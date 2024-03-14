@@ -19,7 +19,7 @@ class GerritEnv(gym.Env):
         self.gitRepositoryPath = gitRepositoryPath
         self.actionsJarPath = actionsJarPath
         self.repositoryName = repositoryName
-        self.sanitized_repo_name = repositoryName.replace("-", "_").replace("/", "_")
+        self.sanitized_repo_name = self.__sanitize_repository_name(repositoryName)
         self.scraper =  Scraper(mode=Mode.snapshot,
                                 repository=self.sanitized_repo_name,
                                 prometheus_url=prometheus_url,
@@ -202,3 +202,6 @@ class GerritEnv(gym.Env):
         # Mutates the state
         StateEnricher(state, self.sanitized_repo_name).hydrate()
         return state
+
+    def __sanitize_repository_name(self, repository_name: str):
+        return repository_name.replace("-", "_").replace("/", "_").lower()
