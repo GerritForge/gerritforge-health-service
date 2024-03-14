@@ -8,8 +8,11 @@ import os
 from scraper import Scraper,Mode
 import json
 from state_enricher import StateEnricher
+import datetime
 
 class GerritEnv(gym.Env):
+    episode_counter = 0
+    start_timestamp = str(datetime.datetime.now().timestamp())
     def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
         prometheus_url = gerritUrl+"/plugins/metrics-reporter-prometheus/metrics"
         self.gerritUrl = gerritUrl
@@ -65,6 +68,7 @@ class GerritEnv(gym.Env):
         return gym.spaces.Box(low, high, shape)
 
     def step(self, action):
+        self.episode_counter += 1
         current_metrics = self._get_state()
 
         temporaryRepoDirectory = "/tmp/"+self.repositoryName
@@ -93,10 +97,20 @@ class GerritEnv(gym.Env):
         new_metrics = self._get_state()
     
         new_state = [new_metrics[o] for o in self.observations]
+        current_state = [current_metrics[o] for o in self.observations]
         print("New state")
         print(new_state)
         #Add truncated
-        return new_state, self._calc_reward(current_metrics, action, new_metrics)
+        reward = self._calc_reward(current_metrics, action, new_metrics)
+
+        self.dump_step(new_state, current_state, action, reward)
+        return new_state, reward
+
+    def dump_step(self, new_state, current_state, action, reward):
+        step_str = ",".join([str(self.episode_counter)] + [",".join(map(str, new_state))] + [",".join(map(str,current_state))] + [str(action), str(reward)])
+
+        with open("/tmp/state_dump_" + str(self.start_timestamp) + ".csv", 'a') as file:
+          file.write(step_str + "\n")
 
     def get_current_state(self):
         state = self._get_state()
