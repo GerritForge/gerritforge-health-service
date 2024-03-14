@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30453658_3a8d35d3",
+        "filename": "components/consumers/prometheus/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-14T11:00:19Z",
+      "side": 1,
+      "message": "This is the volume for storing the `\u003coutput-file\u003e`. Shall we call it `scrape-output`?\n\n\n```suggestion\nmkir `pwd`/scrape-output\ndocker run --rm `pwd`/scrape-otuput/:/scrape-output/ gerritforge/ghs-gerrit-scraper:\u003ctag\u003e http://\u003cgerrit-server\u003e/plugins/metrics-reporter-prometheus/metrics --repository \u003crepo-name\u003e --bearer-token \u003ctoken\u003e --output-csv-file /scrape-output/\u003coutput-file\u003e\n```",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "86281f4a89ee519c9783160c6b9aa946ec323828",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2599307e_d9088607",
+        "filename": "components/consumers/prometheus/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-14T11:00:19Z",
+      "side": 1,
+      "message": "/scrape-output/\u003coutput-file\u003e?",
+      "range": {
+        "startLine": 116,
+        "startChar": 197,
+        "endLine": 116,
+        "endChar": 210
+      },
+      "revId": "86281f4a89ee519c9783160c6b9aa946ec323828",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
