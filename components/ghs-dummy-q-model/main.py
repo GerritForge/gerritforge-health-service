@@ -1,8 +1,10 @@
-import torch
 import numpy as np
 from gerrit_env import GerritEnv
 import argparse
 import configparser
+import json
+import sys
+import datetime
 
 
 if __name__ == "__main__":
@@ -25,6 +27,9 @@ if __name__ == "__main__":
     # Read the configuration file
     config.read(args.config)
 
+    # Q status function file
+    q_status_file = config["General"]["q_output_dir"] + "/q_status_" + str(datetime.datetime.now().timestamp()) + ".json"
+
     # Q-learning parameters
     learning_rate = float(config[mode]["learning_rate"])
     discount_factor = float(config[mode]["discount_factor"])
@@ -40,7 +45,7 @@ if __name__ == "__main__":
                     gitRepositoryPath=config["General"]["git_repository_path"], 
                     actionsJarPath=config["General"]["actions_jar_path"])
 
-    state = tuple(env.get_current_state())
+    state = str(env.get_current_state())
     # Q-learning algorithm
     for i in range(num_episodes):
             # Initial state
@@ -49,24 +54,23 @@ if __name__ == "__main__":
                 action = np.random.randint(3)  # Two actions: 0 and 1
             else:
                 if state not in Q:
-                    Q[state] = [0, 0]  # Initialize Q-values for the state
+                    Q[state] = [0, 0, 0]  # Initialize Q-values for the state
                 action = np.argmax(Q[state])
             print("Action")
             print(action)
             # Take action and observe reward and next state
             s,reward = env.step(action=action)
-            print("Reward:")
-            print(reward)
-            print("Old state:")
-            print(state)
-            next_state = tuple(s)
-            print("New state:")
-            print(next_state)
+            next_state = str(s)
+            print("Reward: " + str(reward))
             # Update Q-value using Q-learning update rule
             if next_state not in Q:
-                Q[next_state] = [0, 0]  # Initialize Q-values for the next state
+                Q[next_state] = [0, 0, 0]  # Initialize Q-values for the next state
             max_next_Q = max(Q[next_state])
             Q[state][action] += learning_rate * (reward + discount_factor * max_next_Q - Q[state][action])
 
             # Move to next state
             state = next_state
+    Q_string = json.dumps(Q)
+
+    with open(q_status_file, 'w') as file:
+        file.write(Q_string)
