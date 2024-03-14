@@ -5,25 +5,36 @@ import shutil
 import numpy as np
 from gymnasium import spaces
 import os
-from scraper import Scraper,Mode
+from scraper import Scraper, Mode
 import json
 from state_enricher import StateEnricher
 import datetime
 
+
 class GerritEnv(gym.Env):
     episode_counter = 0
     start_timestamp = str(datetime.datetime.now().timestamp())
-    def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
-        prometheus_url = gerritUrl+"/plugins/metrics-reporter-prometheus/metrics"
+
+    def __init__(
+        self,
+        gerritUrl,
+        gitRepositoryPath,
+        repositoryName,
+        actionsJarPath,
+        prometheus_bearer_token,
+    ):
+        prometheus_url = gerritUrl + "/plugins/metrics-reporter-prometheus/metrics"
         self.gerritUrl = gerritUrl
         self.gitRepositoryPath = gitRepositoryPath
         self.actionsJarPath = actionsJarPath
         self.repositoryName = repositoryName
         self.sanitized_repo_name = self.__sanitize_repository_name(repositoryName)
-        self.scraper =  Scraper(mode=Mode.snapshot,
-                                repository=self.sanitized_repo_name,
-                                prometheus_url=prometheus_url,
-                                bearer_token=prometheus_bearer_token)
+        self.scraper = Scraper(
+            mode=Mode.snapshot,
+            repository=self.sanitized_repo_name,
+            prometheus_url=prometheus_url,
+            bearer_token=prometheus_bearer_token,
+        )
         self.action_space = spaces.Discrete(3)
 
         self._action_to_action_name = {
@@ -32,34 +43,33 @@ class GerritEnv(gym.Env):
             2: "PackRefsAction",
         }
 
-        self.observations = ["bitmap_index_misses_pct",
+        self.observations = [
+            "bitmap_index_misses_pct",
             "loose_objects_discretised",
-            "loose_refs_discretised"]
+            "loose_refs_discretised",
+        ]
 
-        self._action_to_reward = {
-            0: 1,
-            1: 0,
-            2: 0.8
-        }
+        self._action_to_reward = {0: 1, 1: 0, 2: 0.8}
 
         self._reward_weights = {
-            "bitmap_index_misses_pct": 1/3,
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.sanitized_repo_name: 1/3,
-            "action": 1/3
+            "bitmap_index_misses_pct": 1 / 3,
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"
+            + self.sanitized_repo_name: 1 / 3,
+            "action": 1 / 3,
         }
 
         self.observation_space = self.build_ghs_obs_space(self.observations)
 
     def build_ghs_obs_space(self, observations):
         lower_obs_bound = {
-            "bitmap_index_misses_pct":0,
-            "loose_objects_discretised":0,
-            "loose_refs_discretised":0
+            "bitmap_index_misses_pct": 0,
+            "loose_objects_discretised": 0,
+            "loose_refs_discretised": 0,
         }
         higher_obs_bound = {
-            "bitmap_index_misses_pct":100,
-            "loose_objects_discretised":1,
-            "loose_refs_discretised":1
+            "bitmap_index_misses_pct": 100,
+            "loose_objects_discretised": 1,
+            "loose_refs_discretised": 1,
         }
 
         low = np.array([lower_obs_bound[o] for o in observations])
@@ -71,58 +81,80 @@ class GerritEnv(gym.Env):
         self.episode_counter += 1
         current_metrics = self._get_state()
 
-        temporaryRepoDirectory = "/tmp/"+self.repositoryName
+        temporaryRepoDirectory = "/tmp/" + self.repositoryName
         if os.path.exists(temporaryRepoDirectory):
             shutil.rmtree(temporaryRepoDirectory)
         action_name = self._action_to_action_name[action]
         print(action_name)
-        java_command = ['java', '-jar', self.actionsJarPath, action_name, self.gitRepositoryPath]
-        process = subprocess.Popen(java_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        java_command = [
+            "java",
+            "-jar",
+            self.actionsJarPath,
+            action_name,
+            self.gitRepositoryPath,
+        ]
+        process = subprocess.Popen(
+            java_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         # Wait for the process to finish and capture output
         stdout, stderr = process.communicate()
-        
-        if process.returncode != 0:
-           print("Error occurred while running the JAR file:")
-           print(stderr.decode('utf-8'))
-        else:
-           print("Java JAR file executed successfully:")
-           print(stdout.decode('utf-8'))
 
-        Repo.clone_from(self.gerritUrl+"/"+self.repositoryName, temporaryRepoDirectory)
+        if process.returncode != 0:
+            print("Error occurred while running the JAR file:")
+            print(stderr.decode("utf-8"))
+        else:
+            print("Java JAR file executed successfully:")
+            print(stdout.decode("utf-8"))
+
+        Repo.clone_from(
+            self.gerritUrl + "/" + self.repositoryName, temporaryRepoDirectory
+        )
 
         if os.path.exists(temporaryRepoDirectory):
             shutil.rmtree(temporaryRepoDirectory)
 
         new_metrics = self._get_state()
-    
+
         new_state = [new_metrics[o] for o in self.observations]
         current_state = [current_metrics[o] for o in self.observations]
         print("New state")
         print(new_state)
-        #Add truncated
+        # Add truncated
         reward = self._calc_reward(current_metrics, action, new_metrics)
 
         self.dump_step(new_state, current_state, action, reward)
         return new_state, reward
 
     def dump_step(self, new_state, current_state, action, reward):
-        step_str = ",".join([str(self.episode_counter)] + [",".join(map(str, new_state))] + [",".join(map(str,current_state))] + [str(action), str(reward)])
+        step_str = ",".join(
+            [str(self.episode_counter)]
+            + [",".join(map(str, new_state))]
+            + [",".join(map(str, current_state))]
+            + [str(action), str(reward)]
+        )
 
-        with open("/tmp/state_dump_" + str(self.start_timestamp) + ".csv", 'a') as file:
-          file.write(step_str + "\n")
+        with open("/tmp/state_dump_" + str(self.start_timestamp) + ".csv", "a") as file:
+            file.write(step_str + "\n")
 
     def get_current_state(self):
         state = self._get_state()
-        return  [state[o] for o in self.observations]
+        return [state[o] for o in self.observations]
 
     def _calc_reward(self, pre, action, post):
-        assert(pre.keys() == post.keys())
+        assert pre.keys() == post.keys()
 
-        return self._reward_search_for_reuse(pre, post) + self._reward_bitmap_misses(pre, post) + self._reward_action(action)
+        return (
+            self._reward_search_for_reuse(pre, post)
+            + self._reward_bitmap_misses(pre, post)
+            + self._reward_action(action)
+        )
 
     def _reward_search_for_reuse(self, pre, post):
-        key = 'plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_'+self.sanitized_repo_name
+        key = (
+            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"
+            + self.sanitized_repo_name
+        )
 
         pre_bucket = self._search_for_reuse_bucket(pre[key])
         post_bucket = self._search_for_reuse_bucket(post[key])
@@ -142,7 +174,7 @@ class GerritEnv(gym.Env):
 
     def _search_for_reuse_bucket(self, millis):
         # TODO: Make configurable or extract from jgit config
-        millis_max = 60000*5
+        millis_max = 60000 * 5
         cp1 = 1000
         cp2 = 60000
 
@@ -155,7 +187,7 @@ class GerritEnv(gym.Env):
         return bucket
 
     def _reward_bitmap_misses(self, pre, post):
-        key = 'bitmap_index_misses_pct'
+        key = "bitmap_index_misses_pct"
 
         # Default no cookie
         reward = 0
@@ -163,7 +195,7 @@ class GerritEnv(gym.Env):
             # Had no bitmap and now have bitmap, cookie size proportional to
             # effectiveness of bitmap
             if post[key] >= 0:
-                reward = 1-post[key]
+                reward = 1 - post[key]
 
         elif post[key] < 0:
             # Had bitmap, but lost it, therefore, no cookie
@@ -188,7 +220,7 @@ class GerritEnv(gym.Env):
         return reward * self._reward_weights[key]
 
     def _reward_action(self, action):
-        key = 'action'
+        key = "action"
 
         # TODO: Compute actual reward of action?
 

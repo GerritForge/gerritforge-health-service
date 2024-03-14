@@ -38,13 +38,16 @@ class StateEnricher:
             ]
         )
 
-        self.state["bitmap_index_misses_pct"] = round(self.normalize(
-            self.state[
-                "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
-                + self.repository_name
-            ],
-            total_number_of_objects,
-        ),0)
+        self.state["bitmap_index_misses_pct"] = round(
+            self.normalize(
+                self.state[
+                    "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
+                    + self.repository_name
+                ],
+                total_number_of_objects,
+            ),
+            0,
+        )
 
         loose_objects_pct = self.normalize(
             self.state[
