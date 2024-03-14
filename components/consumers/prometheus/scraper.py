@@ -42,7 +42,7 @@ class Scraper:
         bearer_token=None,
     ):
         self.mode = mode
-        self.repository = repository
+        self.repository = repository.lower()
         self.url = prometheus_url
         self.output_csv_file = output_csv_file
         self.bearer_token = bearer_token
@@ -70,11 +70,12 @@ class Scraper:
             for family in text_string_to_metric_families(data.decode("utf-8")):
 
                 for sample in family.samples:
-                    if sample.name in Scraper.__system_metrics or (
-                        sample.name.startswith(tuple(Scraper.__metrics_prefixes))
-                        and sample.name.endswith(self.repository)
+                    lower_name = sample.name.lower()
+                    if lower_name in Scraper.__system_metrics or (
+                        lower_name.startswith(tuple(Scraper.__metrics_prefixes))
+                        and lower_name.endswith(self.repository)
                     ):
-                        samples[sample.name] = sample.value
+                        samples[lower_name] = sample.value
 
             sorted_keys = sorted(samples.keys())
             sorted_keys.insert(0, "timestamp")
