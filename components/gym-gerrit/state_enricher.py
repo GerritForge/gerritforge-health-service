@@ -14,6 +14,7 @@
 
 
 class StateEnricher:
+    __number_of_decimals = 1
 
     def __init__(self, state: dict, repository_name):
         self.state = state
@@ -23,7 +24,11 @@ class StateEnricher:
     def normalize(value, max_value):
         return 100 * float(value) / float(max_value)
 
-    def hydrate(self):
+    @staticmethod
+    def discretize_pct(value_pct, number_of_decimals):
+        return round(value_pct / 100, number_of_decimals)
+
+    def hydrate(self, number_of_decimals=__number_of_decimals):
         total_number_of_objects = (
             self.state[
                 "plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name
@@ -41,9 +46,33 @@ class StateEnricher:
             total_number_of_objects,
         )
 
-        self.state["loose_objects_pct"] = self.normalize(
+        loose_objects_pct = self.normalize(
             self.state[
                 "plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name
             ],
             total_number_of_objects,
+        )
+        self.state["loose_objects_pct"] = loose_objects_pct
+
+        self.state["loose_objects_discretised"] = self.discretize_pct(
+            loose_objects_pct, number_of_decimals
+        )
+
+        total_number_of_refs = (
+            self.state[
+                "plugins_git_repo_metrics_numberoflooserefs_" + self.repository_name
+            ]
+            + self.state[
+                "plugins_git_repo_metrics_numberofpackedrefs_" + self.repository_name
+            ]
+        )
+
+        self.state["loose_refs_discretised"] = self.discretize_pct(
+            self.normalize(
+                self.state[
+                    "plugins_git_repo_metrics_numberoflooserefs_" + self.repository_name
+                ],
+                total_number_of_refs,
+            ),
+            number_of_decimals,
         )
