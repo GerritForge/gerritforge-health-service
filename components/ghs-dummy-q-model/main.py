@@ -50,6 +50,9 @@ if __name__ == "__main__":
             else:
                 if state not in Q:
                     Q[state] = [0, 0]  # Initialize Q-values for the state
+
+                print("State cache size:")
+                print(len(Q[state]))
                 action = np.argmax(Q[state])
             print("Action")
             print(action)
