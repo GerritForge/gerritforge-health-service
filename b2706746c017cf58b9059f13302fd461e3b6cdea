@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e9f315_5cfcd58e",
+        "filename": "components/gym-gerrit/gerrit_env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-14T22:26:57Z",
+      "side": 1,
+      "message": "nit: turn sanitise operations into function",
+      "range": {
+        "startLine": 22,
+        "startChar": 35,
+        "endLine": 22,
+        "endChar": 93
+      },
+      "revId": "b2706746c017cf58b9059f13302fd461e3b6cdea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
