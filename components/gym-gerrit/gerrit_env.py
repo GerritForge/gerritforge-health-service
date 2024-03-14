@@ -29,23 +29,9 @@ class GerritEnv(gym.Env):
             2: "PackRefsAction",
         }
 
-        self.observations = ["plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+self.sanitized_repo_name,
-                             "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofbitmaps_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofdirectories_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofemptydirectories_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberoffiles_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofkeepfiles_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberoflooseobjects_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberoflooserefs_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofpackedobjects_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofpackedrefs_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_numberofpackfiles_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_sizeoflooseobjects_"+self.sanitized_repo_name,
-                             "plugins_git_repo_metrics_sizeofpackedobjects_"+self.sanitized_repo_name,
-                             "proc_cpu_num_cores",
-                             "proc_cpu_system_load",
-                             "proc_cpu_usage"]
+        self.observations = ["bitmap_index_misses_pct",
+            "loose_objects_discretised",
+            "loose_refs_discretised"]
 
         self._action_to_reward = {
             0: 1,
@@ -63,42 +49,14 @@ class GerritEnv(gym.Env):
 
     def build_ghs_obs_space(self, observations):
         lower_obs_bound = {
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+self.sanitized_repo_name:-1,
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.sanitized_repo_name:-1,
-            "plugins_git_repo_metrics_numberofbitmaps_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofdirectories_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofemptydirectories_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberoffiles_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofkeepfiles_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberoflooseobjects_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberoflooserefs_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofpackedobjects_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofpackedrefs_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_numberofpackfiles_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_sizeoflooseobjects_"+self.sanitized_repo_name:0,
-            "plugins_git_repo_metrics_sizeofpackedobjects_"+self.sanitized_repo_name:0,
-            "proc_cpu_num_cores":0,
-            "proc_cpu_system_load":0,
-            "proc_cpu_usage":0,
+            "bitmap_index_misses_pct":0,
+            "loose_objects_discretised":0,
+            "loose_refs_discretised":0
         }
         higher_obs_bound = {
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofbitmaps_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofdirectories_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofemptydirectories_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberoffiles_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofkeepfiles_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberoflooseobjects_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberoflooserefs_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofpackedobjects_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofpackedrefs_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_numberofpackfiles_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_sizeoflooseobjects_"+self.sanitized_repo_name:+ np.inf,
-            "plugins_git_repo_metrics_sizeofpackedobjects_"+self.sanitized_repo_name:+ np.inf,
-            "proc_cpu_num_cores":+ np.inf,
-            "proc_cpu_system_load":+ np.inf,
-            "proc_cpu_usage":+ np.inf,
+            "bitmap_index_misses_pct":100,
+            "loose_objects_discretised":1,
+            "loose_refs_discretised":1
         }
 
         low = np.array([lower_obs_bound[o] for o in observations])
@@ -121,11 +79,11 @@ class GerritEnv(gym.Env):
         stdout, stderr = process.communicate()
         
         if process.returncode != 0:
-            print("Error occurred while running the JAR file:")
-            print(stderr.decode('utf-8'))
+           print("Error occurred while running the JAR file:")
+           print(stderr.decode('utf-8'))
         else:
-            print("Java JAR file executed successfully:")
-            print(stdout.decode('utf-8'))
+           print("Java JAR file executed successfully:")
+           print(stdout.decode('utf-8'))
 
         Repo.clone_from(self.gerritUrl+"/"+self.repositoryName, temporaryRepoDirectory)
 
@@ -134,12 +92,15 @@ class GerritEnv(gym.Env):
 
         new_metrics = self._get_state()
     
+        new_state = [new_metrics[o] for o in self.observations]
+        print("New state")
+        print(new_state)
         #Add truncated
-        return new_metrics, self._calc_reward(current_metrics, action, new_metrics)
+        return new_state, self._calc_reward(current_metrics, action, new_metrics)
 
     def get_current_state(self):
         state = self._get_state()
-        return state
+        return  [state[o] for o in self.observations]
 
     def _calc_reward(self, pre, action, post):
         assert(pre.keys() == post.keys())
