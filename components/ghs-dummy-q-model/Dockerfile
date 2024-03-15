@@ -1,5 +1,7 @@
 FROM openjdk:11
 
+RUN useradd -u 1000 -ms /bin/bash gerrit
+
 RUN apt-get update && \
     apt-get install -y python3-pip gettext-base && \
     apt-get clean
@@ -27,5 +29,7 @@ RUN /bin/bash -c "source venv/bin/activate"
 RUN pip install -e prometheus
 RUN pip install -e gym-gerrit
 RUN pip install -r requirements.txt
+
+USER gerrit
 
 ENTRYPOINT [ "./entrypoint.sh" ]
