@@ -28,4 +28,10 @@ RUN pip install -e prometheus
 RUN pip install -e gym-gerrit
 RUN pip install -r requirements.txt
 
+RUN useradd -u 1000 -ms /bin/bash gerrit
+
+RUN chown -R gerrit.gerrit .
+
+USER gerrit
+
 ENTRYPOINT [ "./entrypoint.sh" ]
