@@ -47,7 +47,10 @@ if __name__ == "__main__":
                     prometheus_bearer_token=config["General"]["prometheus_bearer_token"],
                     repositoryName=config["General"]["repository_name"],
                     gitRepositoryPath=config["General"]["git_repository_path"], 
-                    actionsJarPath=config["General"]["actions_jar_path"])
+                    actionsJarPath=config["General"]["actions_jar_path"],
+                    username=config["General"]["username"],
+                    password=config["General"]["password"]
+                    )
 
     state = str(env.get_current_state())
     # Q-learning algorithm
@@ -64,7 +67,7 @@ if __name__ == "__main__":
             # Take action and observe reward and next state
             s,reward = env.step(action=action)
             next_state = str(s)
-            logging.info("reward generated for action: %s, reward:%d",action,reward)
+            logging.info("reward generated for action: %s, reward:%s",action,reward)
             # Update Q-value using Q-learning update rule
             if next_state not in Q:
                 Q[next_state] = [0, 0, 0]  # Initialize Q-values for the next state
