@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     state = str(env.get_current_state())
     # Q-learning algorithm
-    for i in range(num_episodes):
+    while True:
             # Initial state
             # Epsilon-greedy action selection
             if state not in Q:
