@@ -16,6 +16,24 @@
       "message": "unrelated",
       "revId": "78780895289b3620fe1b23aaacb8eae8a39f1691",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10952825_1df2842c",
+        "filename": "components/ghs-dummy-q-model/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2024-03-15T10:21:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c2576ca7_a1eaca9e",
+      "revId": "78780895289b3620fe1b23aaacb8eae8a39f1691",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
