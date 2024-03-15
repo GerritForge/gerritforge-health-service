@@ -3,6 +3,8 @@ gerrit_url=$Q_LEARN_GERRIT_URL
 prometheus_bearer_token=$Q_LEARN_BEARER_TOKEN
 repository_name=$Q_LEARN_GIT_REPO
 git_repository_path=/git/$Q_LEARN_GIT_REPO.git
+username = $Q_LEARN_USERNAME
+password = $Q_LEARN_PASSWORD
 actions_jar_path=actions-executor.jar
 q_output_dir=/tmp/
 

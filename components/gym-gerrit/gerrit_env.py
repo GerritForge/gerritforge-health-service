@@ -1,6 +1,7 @@
 import gymnasium as gym
 import subprocess
 from git import Repo
+import git
 import shutil
 import numpy as np
 from gymnasium import spaces
@@ -10,17 +11,20 @@ import json
 from state_enricher import StateEnricher
 import datetime
 import logging
+from git import GitConfigParser
 
 class GerritEnv(gym.Env):
     episode_counter = 0
     start_timestamp = str(datetime.datetime.now().timestamp())
 
-    def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
+    def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token, username, password):
         prometheus_url = gerritUrl+"/plugins/metrics-reporter-prometheus/metrics"
         self.gerritUrl = gerritUrl
         self.gitRepositoryPath = gitRepositoryPath
         self.actionsJarPath = actionsJarPath
         self.repositoryName = repositoryName
+        self.username = username
+        self.password = password
         self.sanitized_repo_name = self.__sanitize_repository_name(repositoryName)
         self.scraper =  Scraper(mode=Mode.snapshot,
                                 repository=self.sanitized_repo_name,
@@ -89,8 +93,8 @@ class GerritEnv(gym.Env):
                         action_name, process.returncode, stderr.decode('utf-8'))
         else:
             logging.info("action %s executed successfuly", action_name)
-
-        Repo.clone_from(self.gerritUrl+"/"+self.repositoryName, temporaryRepoDirectory)
+        
+        git.Repo.clone_from(f"https://{self.username}:{self.password}@review-4.gerrithub.io/a/"+self.repositoryName, temporaryRepoDirectory)
 
         if os.path.exists(temporaryRepoDirectory):
             shutil.rmtree(temporaryRepoDirectory)
