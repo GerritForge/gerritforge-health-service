@@ -9,10 +9,14 @@ from scraper import Scraper,Mode
 import json
 from state_enricher import StateEnricher
 import datetime
+import logging
 
 class GerritEnv(gym.Env):
     episode_counter = 0
     start_timestamp = str(datetime.datetime.now().timestamp())
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
     def __init__(self, gerritUrl, gitRepositoryPath, repositoryName, actionsJarPath, prometheus_bearer_token):
         prometheus_url = gerritUrl+"/plugins/metrics-reporter-prometheus/metrics"
         self.gerritUrl = gerritUrl
@@ -75,7 +79,7 @@ class GerritEnv(gym.Env):
         if os.path.exists(temporaryRepoDirectory):
             shutil.rmtree(temporaryRepoDirectory)
         action_name = self._action_to_action_name[action]
-        print(action_name)
+        logging.info("executing action %s, episode number %d",action_name, self.episode_counter)
         java_command = ['java', '-jar', self.actionsJarPath, action_name, self.gitRepositoryPath]
         process = subprocess.Popen(java_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -83,11 +87,10 @@ class GerritEnv(gym.Env):
         stdout, stderr = process.communicate()
         
         if process.returncode != 0:
-           print("Error occurred while running the JAR file:")
-           print(stderr.decode('utf-8'))
+           logging.error("error occured while running the action %s, return code: %d, message:%s", 
+                        action_name, process.returncode, stderr.decode('utf-8'))
         else:
-           print("Java JAR file executed successfully:")
-           print(stdout.decode('utf-8'))
+            logging.info("action %s executed successfuly", action_name)
 
         Repo.clone_from(self.gerritUrl+"/"+self.repositoryName, temporaryRepoDirectory)
 
@@ -98,9 +101,6 @@ class GerritEnv(gym.Env):
     
         new_state = [new_metrics[o] for o in self.observations]
         current_state = [current_metrics[o] for o in self.observations]
-        print("New state")
-        print(new_state)
-        #Add truncated
         reward = self._calc_reward(current_metrics, action, new_metrics)
 
         self.dump_step(new_state, current_state, action, reward)
@@ -108,7 +108,7 @@ class GerritEnv(gym.Env):
 
     def dump_step(self, new_state, current_state, action, reward):
         step_str = ",".join([str(self.episode_counter)] + [",".join(map(str, new_state))] + [",".join(map(str,current_state))] + [str(action), str(reward)])
-
+        logging.info("step executed successfuly. Result:%s", step_str)
         with open("/tmp/state_dump_" + str(self.start_timestamp) + ".csv", 'a') as file:
           file.write(step_str + "\n")
 
