@@ -5,6 +5,10 @@ import configparser
 import json
 import sys
 import datetime
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.StreamHandler(), 
+                                                                                                      logging.FileHandler('/tmp/ghs-q-model.log', mode='a')])
 
 
 if __name__ == "__main__":
@@ -56,12 +60,11 @@ if __name__ == "__main__":
                 if state not in Q:
                     Q[state] = [0, 0, 0]  # Initialize Q-values for the state
                 action = np.argmax(Q[state])
-            print("Action")
-            print(action)
+            logging.info("action taken by model: %s",action)
             # Take action and observe reward and next state
             s,reward = env.step(action=action)
             next_state = str(s)
-            print("Reward: " + str(reward))
+            logging.info("reward generated for action: %s, reward:%d",action,reward)
             # Update Q-value using Q-learning update rule
             if next_state not in Q:
                 Q[next_state] = [0, 0, 0]  # Initialize Q-values for the next state
