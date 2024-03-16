@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4198499e_efdc7df5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-16T16:20:27Z",
+      "side": 1,
+      "message": "Here [I3d779549f](https://review.gerrithub.io/c/GerritForge/gerritforge-health-service/+/1183650) is an alternative that could be passed as configuration",
+      "revId": "8282b22807ebfb0988be1cf9e3d3ffa3f8c1a25d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
