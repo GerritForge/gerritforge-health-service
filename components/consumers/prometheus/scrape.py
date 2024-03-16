@@ -12,10 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from scraper import Scraper, Mode
+from scraper import Scraper
 import argparse
+from enum import Enum
 import time
 import schedule
+
+
+class Mode(Enum):
+    batch = "batch"
+    snapshot = "snapshot"
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Prometheus Scraper")
@@ -45,16 +52,17 @@ if __name__ == "__main__":
         parser.error(f"--mode {Mode.batch.value} requires `--output-csv-file` value.")
 
     scraper = Scraper(
-        args.mode,
         args.repository.replace("-", "_"),
         args.url,
         args.output_csv_file,
         args.bearer_token,
     )
 
-    scraper.run()
-    if args.mode == Mode.batch:
-        schedule.every(1).minutes.do(scraper.run)
+    if args.mode == Mode.snapshot:
+        print(scraper.scrape_to_dict())
+    else:
+        scraper.scrape_to_csv()
+        schedule.every(1).minutes.do(scraper.scrape_to_csv)
 
         while True:
             schedule.run_pending()

@@ -6,8 +6,7 @@ import shutil
 import numpy as np
 from gymnasium import spaces
 import os
-from scraper import Scraper,Mode
-import json
+from scraper import Scraper
 from state_enricher import StateEnricher
 import datetime
 import logging
@@ -26,8 +25,7 @@ class GerritEnv(gym.Env):
         self.username = username
         self.password = password
         self.sanitized_repo_name = self.__sanitize_repository_name(repositoryName)
-        self.scraper =  Scraper(mode=Mode.snapshot,
-                                repository=self.sanitized_repo_name,
+        self.scraper =  Scraper(repository=self.sanitized_repo_name,
                                 prometheus_url=prometheus_url,
                                 bearer_token=prometheus_bearer_token)
         self.action_space = spaces.Discrete(3)
@@ -199,8 +197,7 @@ class GerritEnv(gym.Env):
 
     def _get_state(self):
         # #TODO ignore lines with -1 in all fields
-        state_json = self.scraper.run()
-        state = json.loads(state_json)
+        (state, _) = self.scraper.scrape_to_dict()
 
         # Mutates the state
         StateEnricher(state, self.sanitized_repo_name).hydrate()
