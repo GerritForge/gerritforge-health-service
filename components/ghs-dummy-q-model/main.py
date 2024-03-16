@@ -10,6 +10,12 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.StreamHandler(), 
                                                                                                       logging.FileHandler('/tmp/ghs-q-model.log', mode='a')])
 
+def infinite_sequence():
+    i = 0
+    while True:
+        yield i
+        i += 1
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="GHS model")
@@ -54,7 +60,7 @@ if __name__ == "__main__":
 
     state = str(env.get_current_state())
     # Q-learning algorithm
-    for i in range(num_episodes):
+    for i in range(num_episodes) if num_episodes > 0 else infinite_sequence():
             # Initial state
             # Epsilon-greedy action selection
             if state not in Q:
@@ -79,4 +85,3 @@ if __name__ == "__main__":
             Q_string = json.dumps(Q)
             with open(q_status_file, 'w') as file:
                 file.write(Q_string)
-    
