@@ -17,17 +17,35 @@ import requests
 from prometheus_client.parser import text_string_to_metric_families
 import csv
 import time
-from enum import Enum
-import json
-
-
-class Mode(Enum):
-    batch = "batch"
-    snapshot = "snapshot"
 
 
 class Scraper:
     __system_metrics = {"proc_cpu_num_cores", "proc_cpu_system_load", "proc_cpu_usage"}
+    __git_repo_metrics = {
+        "plugins_git_repo_metrics_combinedrefssha1_",
+        "plugins_git_repo_metrics_numberofbitmaps_",
+        "plugins_git_repo_metrics_numberofdirectories_",
+        "plugins_git_repo_metrics_numberofemptydirectories_",
+        "plugins_git_repo_metrics_numberoffiles_",
+        "plugins_git_repo_metrics_numberofkeepfiles_",
+        "plugins_git_repo_metrics_numberoflooseobjects_",
+        "plugins_git_repo_metrics_numberoflooserefs_",
+        "plugins_git_repo_metrics_numberofpackedobjects_",
+        "plugins_git_repo_metrics_numberofpackedrefs_",
+        "plugins_git_repo_metrics_numberofpackfiles_",
+        "plugins_git_repo_metrics_sizeoflooseobjects_",
+        "plugins_git_repo_metrics_sizeofpackedobjects_",
+    }
+    __git_per_repo_metrics = {
+        "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_",
+        "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_",
+    }
+    __all_metrics_number = (
+        len(__system_metrics)
+        + len(__git_repo_metrics)
+        + len(__git_per_repo_metrics)
+        + 1  # for timestamp
+    )
     __metrics_prefixes = {
         "plugins_git_repo_metrics_",
         "plugins_gerrit_per_repo_metrics_collector_ghs_",
@@ -35,19 +53,20 @@ class Scraper:
 
     def __init__(
         self,
-        mode: Mode,
         repository,
         prometheus_url,
         output_csv_file=None,
         bearer_token=None,
     ):
-        self.mode = mode
         self.repository = repository.lower()
         self.url = prometheus_url
         self.output_csv_file = output_csv_file
         self.bearer_token = bearer_token
+        self.mertics_keys = Scraper.__system_metrics.union(
+            self._metrics_with_repository(Scraper.__git_repo_metrics)
+        ).union(self._metrics_with_repository(Scraper.__git_per_repo_metrics))
 
-    def fetch_data(self):
+    def _fetch_data(self):
         try:
             headers = {}
             if self.bearer_token:
@@ -64,7 +83,7 @@ class Scraper:
             print(f"Failed to fetch data: {e}")
             return None
 
-    def parse_data(self, data, scraping_time):
+    def _parse_data(self, data, scraping_time):
         try:
             samples = {}
             for family in text_string_to_metric_families(data.decode("utf-8")):
@@ -77,15 +96,20 @@ class Scraper:
                     ):
                         samples[lower_name] = sample.value
 
-            sorted_keys = sorted(samples.keys())
+            samples_keys = samples.keys()
+            samples_with_none_values = {
+                key: samples[key] if key in samples_keys else None
+                for key in self.mertics_keys
+            }
+            sorted_keys = sorted(samples_with_none_values.keys())
             sorted_keys.insert(0, "timestamp")
-            samples["timestamp"] = scraping_time
-            return (sorted_keys, samples)
+            samples_with_none_values["timestamp"] = scraping_time
+            return (sorted_keys, samples_with_none_values)
 
         except Exception as e:
             print(f"Failed to parse data: {e}")
 
-    def store_metrics_as_csv(self, keys, values):
+    def _store_metrics_as_csv(self, keys, values):
         add_header = False if os.path.exists(self.output_csv_file) else True
         with open(self.output_csv_file, mode="a", newline="") as file:
             writer = csv.writer(file)
@@ -94,30 +118,49 @@ class Scraper:
                 add_header = False
             writer.writerow(values)
 
-    def run(self):
-        scraping_time = int(time.time())
-        value = json.dumps("{}")
-        if self.mode == Mode.batch:
-            self.__batch(scraping_time)
-        else:
-            value = self.__snapshot(scraping_time)
-        return value
+    def scrape_to_csv(self, scraping_time=int(time.time())):
+        """Collects metrics and stores them to as CSV to the provided file.
 
-    def __batch(self, scraping_time):
+        Args:
+            scraping_time (_type_, optional): collection time. Defaults to int(time.time()).
+        """
         print(f" * * * Scraping: {self.url}")
-        data = self.fetch_data()
+        data = self._fetch_data()
         if data:
-            (sorted_keys, samples) = self.parse_data(data, scraping_time)
+            (sorted_keys, samples) = self._parse_data(data, scraping_time)
             sorted_values = [samples[key] for key in sorted_keys]
-            self.store_metrics_as_csv(sorted_keys, sorted_values)
+            self._store_metrics_as_csv(sorted_keys, sorted_values)
         else:
             print("No data to parse.")
 
-    def __snapshot(self, scraping_time):
-        data = self.fetch_data()
+    def scrape_to_dict(
+        self, scraping_time=int(time.time())
+    ) -> tuple[dict[str, float], bool]:
+        """Collects metrics and returns them as dict with infromation if all\n
+        metrics were collected.
+
+        Args:
+            scraping_time (_type_, optional): collection time. Defaults to int(time.time()).
+
+        Returns:
+            `tuple[dict[str,float], bool]`: metrics dictionary (name, value) turned to dict and\n
+            `True` if all metrics were collected, `False` if some were missing
+        """
+        data = self._fetch_data()
         if data:
-            (_, samples) = self.parse_data(data, scraping_time)
-            jsonSamples = json.dumps(samples)
-            return jsonSamples
+            (_, samples) = self._parse_data(data, scraping_time)
+            existing_samples = self._only_existing_metrics(samples)
+            return (
+                existing_samples,
+                len(existing_samples) == Scraper.__all_metrics_number,
+            )
         else:
-            return json.dumps("{}")
+            return ({}, False)
+
+    def _metrics_with_repository(self, metrics: set[str]):
+        return [f"{key}{self.repository}" for key in metrics]
+
+    def _only_existing_metrics(self, metrics: set[str, None | float]):
+        return {
+            key: value for key, value in metrics.items() if metrics[key] is not None
+        }
