@@ -22,6 +22,30 @@
       },
       "revId": "0b388f894bb5902e8c44007a1813ee88118f1ecd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5613f734_16d8c76f",
+        "filename": "components/ghs-dummy-q-model/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-16T16:14:14Z",
+      "side": 1,
+      "message": "These become private class objects/functions like statics is Java - it is rather convention. Yet in this case it is actually useless - removing it 😊",
+      "parentUuid": "3cc5b2ae_8e5ff365",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 26
+      },
+      "revId": "0b388f894bb5902e8c44007a1813ee88118f1ecd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
