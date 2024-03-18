@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4500cd8f_cf118333",
+        "filename": "components/consumers/prometheus/scraper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-18T08:38:34Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 44
+      },
+      "revId": "2b26ec422b80a182690b9778766ef95d080d65c0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
