@@ -196,7 +196,6 @@ class GerritEnv(gym.Env):
         return self._action_to_reward[action] * self._reward_weights[key]
 
     def _get_state(self):
-        # #TODO ignore lines with -1 in all fields
         (state, _) = self.scraper.scrape_to_dict()
 
         # Mutates the state
