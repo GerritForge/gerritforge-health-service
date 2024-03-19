@@ -45,6 +45,30 @@
       },
       "revId": "b2ccb658a2e24523235a99e6260803cd3bc0ead3",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e890e577_fc82dc11",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-19T16:46:30Z",
+      "side": 1,
+      "message": "If you install Gerrit with the above command, these should be the defaults.\nIs it not the case for you?",
+      "parentUuid": "6e0b0649_dad45faa",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 75
+      },
+      "revId": "b2ccb658a2e24523235a99e6260803cd3bc0ead3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
