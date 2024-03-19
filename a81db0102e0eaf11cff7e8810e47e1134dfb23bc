@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae965d89_5ddf6cdd",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-19T16:11:27Z",
+      "side": 1,
+      "message": "nit: invalid path `~/`",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "a81db0102e0eaf11cff7e8810e47e1134dfb23bc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8923e22f_15d99d56",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-19T16:11:27Z",
+      "side": 1,
+      "message": "nit: invalid path, user specific `~/` will be used",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 86
+      },
+      "revId": "a81db0102e0eaf11cff7e8810e47e1134dfb23bc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
