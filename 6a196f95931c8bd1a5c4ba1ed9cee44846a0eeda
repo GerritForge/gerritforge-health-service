@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3eab4c_4d823a03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-19T06:19:46Z",
+      "side": 1,
+      "message": "@ponch78@gmail.com Should we abandon it in favour of the merged one?",
+      "revId": "6a196f95931c8bd1a5c4ba1ed9cee44846a0eeda",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
