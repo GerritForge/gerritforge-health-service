@@ -13,12 +13,31 @@
 # limitations under the License.
 
 
+class HydrationNotPossible(RuntimeError):
+    def __init__(self, msg: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.msg = msg
+
+    def __str__(self) -> str:
+        return self.msg
+
+
 class StateEnricher:
     __number_of_decimals = 1
+    __required_metrics = {
+        "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_",
+        "plugins_git_repo_metrics_numberoflooseobjects_",
+        "plugins_git_repo_metrics_numberofpackedobjects_",
+        "plugins_git_repo_metrics_numberoflooserefs_",
+        "plugins_git_repo_metrics_numberofpackedrefs_",
+    }
 
     def __init__(self, state: dict, repository_name):
         self.state = state
         self.repository_name = repository_name
+        self.required_metrics_keys = self._metrics_with_repository(
+            StateEnricher.__required_metrics
+        )
 
     @staticmethod
     def normalize(value, max_value):
@@ -29,6 +48,21 @@ class StateEnricher:
         return round(value_pct / 100, number_of_decimals)
 
     def hydrate(self, number_of_decimals=__number_of_decimals):
+        """Hydrates the retrieved state with normalized and discretized values of the required metrics.
+
+        Args:
+            number_of_decimals (_type_, optional): rounding factor. Defaults to __number_of_decimals.
+
+        Raises:
+            HydrationNotPossible: when required metrics are not evident in the state. The exception\n
+            message contains the list of missing metrics.
+        """
+        missing_keys = {
+            key for key in self.required_metrics_keys if key not in self.state
+        }
+        if missing_keys:
+            raise HydrationNotPossible(f"Missing metrics: {missing_keys}")
+
         total_number_of_objects = (
             self.state[
                 "plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name
@@ -38,13 +72,16 @@ class StateEnricher:
             ]
         )
 
-        self.state["bitmap_index_misses_pct"] = round(self.normalize(
-            self.state[
-                "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
-                + self.repository_name
-            ],
-            total_number_of_objects,
-        ),0)
+        self.state["bitmap_index_misses_pct"] = round(
+            self.normalize(
+                self.state[
+                    "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
+                    + self.repository_name
+                ],
+                total_number_of_objects,
+            ),
+            0,
+        )
 
         loose_objects_pct = self.normalize(
             self.state[
@@ -76,3 +113,6 @@ class StateEnricher:
             ),
             number_of_decimals,
         )
+
+    def _metrics_with_repository(self, metrics: set[str]):
+        return [f"{key}{self.repository_name}" for key in metrics]
