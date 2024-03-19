@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02d5712_fd25d1bc",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-19T16:47:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "536e8002_54fbac92",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 65
+      },
+      "revId": "b2ccb658a2e24523235a99e6260803cd3bc0ead3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e0b0649_dad45faa",
