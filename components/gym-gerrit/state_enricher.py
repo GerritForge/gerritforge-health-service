@@ -15,10 +15,20 @@
 
 class StateEnricher:
     __number_of_decimals = 1
+    __required_metrics = {
+        "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_",
+        "plugins_git_repo_metrics_numberoflooseobjects_",
+        "plugins_git_repo_metrics_numberofpackedobjects_",
+        "plugins_git_repo_metrics_numberoflooserefs_",
+        "plugins_git_repo_metrics_numberofpackedrefs_",
+    }
 
     def __init__(self, state: dict, repository_name):
         self.state = state
         self.repository_name = repository_name
+        self.required_metrics_keys = self._metrics_with_repository(
+            StateEnricher.__required_metrics
+        )
 
     @staticmethod
     def normalize(value, max_value):
@@ -28,7 +38,18 @@ class StateEnricher:
     def discretize_pct(value_pct, number_of_decimals):
         return round(value_pct / 100, number_of_decimals)
 
-    def hydrate(self, number_of_decimals=__number_of_decimals):
+    def hydrate(self, number_of_decimals=__number_of_decimals) -> bool:
+        """Hydrates the retrieved state with normalized and discretized values of the required metrics.
+
+        Args:
+            number_of_decimals (_type_, optional): rounding factor. Defaults to __number_of_decimals.
+
+        Returns:
+            bool: `True` only if all values were present and discretized, `False` otherwise
+        """
+        if not all(key in self.state for key in self.required_metrics_keys):
+            return False
+
         total_number_of_objects = (
             self.state[
                 "plugins_git_repo_metrics_numberoflooseobjects_" + self.repository_name
@@ -38,13 +59,16 @@ class StateEnricher:
             ]
         )
 
-        self.state["bitmap_index_misses_pct"] = round(self.normalize(
-            self.state[
-                "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
-                + self.repository_name
-            ],
-            total_number_of_objects,
-        ),0)
+        self.state["bitmap_index_misses_pct"] = round(
+            self.normalize(
+                self.state[
+                    "plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_"
+                    + self.repository_name
+                ],
+                total_number_of_objects,
+            ),
+            0,
+        )
 
         loose_objects_pct = self.normalize(
             self.state[
@@ -76,3 +100,8 @@ class StateEnricher:
             ),
             number_of_decimals,
         )
+
+        return True
+
+    def _metrics_with_repository(self, metrics: set[str]):
+        return [f"{key}{self.repository_name}" for key in metrics]
