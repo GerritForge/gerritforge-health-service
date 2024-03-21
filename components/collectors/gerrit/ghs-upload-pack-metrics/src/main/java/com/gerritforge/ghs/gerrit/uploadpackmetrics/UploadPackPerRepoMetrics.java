@@ -32,21 +32,28 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   private static final String UPLOAD_PACK_METRICS_REPO = "uploadPackMetricsRepo";
   private static final FluentLogger log = FluentLogger.forEnclosingClass();
 
+  private final String repoName;
   private final AtomicReference<PackStatistics> lastStats = new AtomicReference<>();
   private final Pattern repoNamePattern;
+  private final UploadPackMetricsLogger uploadpackMetricsLogger;
 
   @Inject
   UploadPackPerRepoMetrics(
-      MetricMaker metricMaker, PluginConfigFactory cfgFactory, @PluginName String pluginName) {
-    String configRepoName =
-        cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO);
-    log.atInfo().log("Installing metrics for %s", configRepoName);
+      MetricMaker metricMaker,
+      PluginConfigFactory cfgFactory,
+      @PluginName String pluginName,
+      UploadPackMetricsLogger uploadPackMetricsLogger) {
+    this.repoName = cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO);
+    log.atInfo().log("Installing metrics for %s", repoName);
+
     this.repoNamePattern =
-        Pattern.compile(String.format(" (/a)?/%s(/git-upload-pack| )", configRepoName));
+        Pattern.compile(String.format(" (/a)?/%s(/git-upload-pack| )", repoName));
+    this.uploadpackMetricsLogger = uploadPackMetricsLogger;
+
     metricMaker.newCallbackMetric(
-        String.format("ghs/git-upload-pack/bitmap_index_misses/%s", configRepoName),
+        String.format("ghs/git-upload-pack/bitmap_index_misses/%s", repoName),
         Long.class,
-        new Description(String.format("Bitmap index misses for repo %s", configRepoName))
+        new Description(String.format("Bitmap index misses for repo %s", repoName))
             .setGauge()
             .setUnit("misses"),
         () -> {
@@ -59,12 +66,11 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
         });
 
     metricMaker.newCallbackMetric(
-        String.format("ghs/git-upload-pack/phase_searching_for_reuse/%s", configRepoName),
+        String.format("ghs/git-upload-pack/phase_searching_for_reuse/%s", repoName),
         Long.class,
         new Description(
                 String.format(
-                    "time jgit searched for deltas which can be reused for repo %s",
-                    configRepoName))
+                    "time jgit searched for deltas which can be reused for repo %s", repoName))
             .setGauge()
             .setUnit(Units.MILLISECONDS),
         () -> {
@@ -80,7 +86,12 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   @Override
   public void onPostUpload(PackStatistics stats) {
     if (repoNamePattern.matcher(Thread.currentThread().getName()).find()) {
+      logStats(stats);
       lastStats.set(stats);
     }
+  }
+
+  private void logStats(PackStatistics stats) {
+    uploadpackMetricsLogger.log(repoName, stats);
   }
 }
