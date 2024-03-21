@@ -38,8 +38,10 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   @Inject
   UploadPackPerRepoMetrics(
       MetricMaker metricMaker, PluginConfigFactory cfgFactory, @PluginName String pluginName) {
-    String configRepoName =
-        cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO);
+    this(metricMaker, cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO), pluginName);
+  }
+  UploadPackPerRepoMetrics(
+      MetricMaker metricMaker, String configRepoName, @PluginName String pluginName) {
     log.atInfo().log("Installing metrics for %s", configRepoName);
     this.repoNamePattern =
         Pattern.compile(String.format(" (/a)?/%s(/git-upload-pack| )", configRepoName));
