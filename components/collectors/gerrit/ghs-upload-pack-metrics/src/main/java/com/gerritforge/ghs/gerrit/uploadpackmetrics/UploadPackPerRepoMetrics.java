@@ -20,10 +20,16 @@ import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.Description.Units;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.PluginConfigFactory;
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
+
 import org.eclipse.jgit.storage.pack.PackStatistics;
 import org.eclipse.jgit.transport.PostUploadHook;
 
@@ -35,11 +41,15 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   private final AtomicReference<PackStatistics> lastStats = new AtomicReference<>();
   private final Pattern repoNamePattern;
 
+  private final Gson gsonFormatter = new Gson();
+
   @Inject
   UploadPackPerRepoMetrics(
       MetricMaker metricMaker, PluginConfigFactory cfgFactory, @PluginName String pluginName) {
-    String configRepoName =
-        cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO);
+      this(metricMaker, cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO), pluginName);
+  }
+  UploadPackPerRepoMetrics(
+      MetricMaker metricMaker, String configRepoName, @PluginName String pluginName) {
     log.atInfo().log("Installing metrics for %s", configRepoName);
     this.repoNamePattern =
         Pattern.compile(String.format(" (/a)?/%s(/git-upload-pack| )", configRepoName));
@@ -80,7 +90,20 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   @Override
   public void onPostUpload(PackStatistics stats) {
     if (repoNamePattern.matcher(Thread.currentThread().getName()).find()) {
+      writeStatsToFile(stats);
       lastStats.set(stats);
+    }
+  }
+
+  public void writeStatsToFile(PackStatistics stats) {
+    try {
+      File file = new File("/tmp/test/folder/stats.txt");
+      file.getParentFile().mkdirs();
+      FileWriter myWriter = new FileWriter(file);
+      myWriter.write(String.format("%s - " + gsonFormatter.toJson(stats), System.currentTimeMillis()));
+      myWriter.close();
+    } catch(IOException ex) {
+      log.atSevere().withCause(ex).log("Error writing stats to file: %s", ex.getMessage());
     }
   }
 }
