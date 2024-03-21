@@ -15,12 +15,13 @@
 package com.gerritforge.ghs.gerrit.uploadpackmetrics;
 
 import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.inject.AbstractModule;
+import com.google.gerrit.lifecycle.LifecycleModule;
 import org.eclipse.jgit.transport.PostUploadHook;
 
-public class Module extends AbstractModule {
+public class Module extends LifecycleModule {
   @Override
   protected void configure() {
     DynamicSet.bind(binder(), PostUploadHook.class).to(UploadPackPerRepoMetrics.class);
+    listener().to(UploadPackMetricsLogger.class);
   }
 }
