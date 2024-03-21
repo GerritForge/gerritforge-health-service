@@ -14,6 +14,7 @@
 
 package com.gerritforge.ghs.gerrit.uploadpackmetrics;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.metrics.Description;
@@ -22,8 +23,10 @@ import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
+
 import org.eclipse.jgit.storage.pack.PackStatistics;
 import org.eclipse.jgit.transport.PostUploadHook;
 
@@ -34,12 +37,19 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
 
   private final AtomicReference<PackStatistics> lastStats = new AtomicReference<>();
   private final Pattern repoNamePattern;
+  private String repoName;
 
+  private UploadPackMetricsLogger uploadpackMetricsLogger;
   @Inject
   UploadPackPerRepoMetrics(
-      MetricMaker metricMaker, PluginConfigFactory cfgFactory, @PluginName String pluginName) {
-    String configRepoName =
-        cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO);
+      MetricMaker metricMaker, PluginConfigFactory cfgFactory, @PluginName String pluginName, UploadPackMetricsLogger uploadPackMetricsLogger) {
+      this(metricMaker, cfgFactory.getFromGerritConfig(pluginName).getString(UPLOAD_PACK_METRICS_REPO), pluginName, uploadPackMetricsLogger);
+  }
+
+
+  @VisibleForTesting
+  UploadPackPerRepoMetrics(
+      MetricMaker metricMaker, String configRepoName, @PluginName String pluginName, UploadPackMetricsLogger uploadPackMetricsLogger) {
     log.atInfo().log("Installing metrics for %s", configRepoName);
     this.repoNamePattern =
         Pattern.compile(String.format(" (/a)?/%s(/git-upload-pack| )", configRepoName));
@@ -75,12 +85,21 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
           }
           return timeSearchingForReuse;
         });
+
+    this.uploadpackMetricsLogger = uploadPackMetricsLogger;
+    this.repoName = configRepoName;
   }
 
   @Override
   public void onPostUpload(PackStatistics stats) {
     if (repoNamePattern.matcher(Thread.currentThread().getName()).find()) {
+      System.out.println("logging stuff");
+      logStats(stats);
       lastStats.set(stats);
     }
+  }
+
+  public void logStats(PackStatistics stats) {
+    uploadpackMetricsLogger.log(repoName, stats);
   }
 }
