@@ -26,7 +26,7 @@ Note that `repo` needs to be switched to repository name that wants to be worked
 ```bash
 git config --file gerrit/etc/gerrit.config gerrit.instanceId 1
 git config --file gerrit/etc/gerrit.config sendemail.enable false
-git config --file gerrit/etc/gerrit.config plugin."gerrit-per-repo-metrics-collector".uploadPackMetricsRepo repo
+git config --file gerrit/etc/gerrit.config plugin."ghs-upload-pack-metrics".uploadPackMetricsRepo repo
 git config --file gerrit/etc/gerrit.config plugin."metrics-reporter-prometheus".prometheusBearerToken token
 
 git config --file gerrit/etc/git-repo-metrics.config git-repo-metrics.project repo
@@ -55,8 +55,8 @@ Create the `repo` and ensure that it was cloned/modified (changes pushed for rev
 [endpoint](http://localhost:8080/plugins/metrics-reporter-prometheus/metrics) exposes the following metrics:
 
 ```bash
-plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_bitmap_index_misses_repo -1.0
-plugins_gerrit_per_repo_metrics_collector_ghs_git_upload_pack_phase_searching_for_reuse_repo 1.0
+plugins_ghs_upload_pack_metrics_ghs_git_upload_pack_bitmap_index_misses_repo -1.0
+plugins_ghs_upload_pack_metrics_ghs_git_upload_pack_phase_searching_for_reuse_repo 1.0
 ...
 plugins_git_repo_metrics_combinedrefssha1_repo 1.6711706E7
 plugins_git_repo_metrics_numberofbitmaps_repo 0.0

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.perrepo.metricscollector;
+package com.gerritforge.ghs.gerrit.uploadpackmetrics;
 
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.AbstractModule;
