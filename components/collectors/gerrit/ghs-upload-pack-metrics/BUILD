@@ -1,4 +1,10 @@
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load("//tools/bzl:junit.bzl", "junit_tests")
+load(
+    "//tools/bzl:plugin.bzl",
+    "PLUGIN_DEPS",
+    "PLUGIN_TEST_DEPS",
+    "gerrit_plugin",
+)
 
 gerrit_plugin(
     name = "ghs-upload-pack-metrics",
@@ -9,4 +15,17 @@ gerrit_plugin(
         "Gerrit-ReloadMode: restart",
     ],
     resources = glob(["src/main/resources/**/*"]),
+)
+
+junit_tests(
+    name = "ghs-upload-pack-metrics_tests",
+    srcs = glob(
+        [
+            "src/test/java/**/*Test.java",
+        ],
+    ),
+    resources = glob(["src/test/resources/**/*"]),
+    deps = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
+        ":ghs-upload-pack-metrics__plugin",
+    ],
 )
