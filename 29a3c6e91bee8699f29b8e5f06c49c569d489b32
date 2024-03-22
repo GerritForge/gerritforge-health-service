@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c284a8_cbbd80a8",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-22T14:43:36Z",
+      "side": 1,
+      "message": "assume it\u0027s `metrics`, not `metricsr`",
+      "range": {
+        "startLine": 58,
+        "startChar": 24,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "29a3c6e91bee8699f29b8e5f06c49c569d489b32",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
