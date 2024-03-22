@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6747c678_4a0a5402",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-22T15:15:00Z",
+      "side": 1,
+      "message": "nit: add empty line between the two constructors",
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d7e94e8_382a012f",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-22T15:15:00Z",
+      "side": 1,
+      "message": "Add `@VisibleForTesting`",
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "867e88c0_12ae90f9",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-22T15:15:00Z",
+      "side": 1,
+      "message": "We can just the Gerrit\u0027s standard way to logging to a file, so that we\u0027ll inherit all the goodies.\n\nSee for instance [1] or [2], for looking at a way to do it.\n\n[1] https://gerrit.googlesource.com/modules/events-broker/+/refs/heads/master/src/main/java/com/gerritforge/gerrit/eventbroker/log/Log4jMessageLogger.java\n[2] https://gerrit.googlesource.com/plugins/pull-replication/+/refs/heads/master/src/main/java/com/googlesource/gerrit/plugins/replication/pull/PullReplicationLogger.java",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b175100_5db6625e",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-22T15:15:00Z",
+      "side": 1,
+      "message": "Why do we need this subclass of `UpoadPackPerRepoMetrics`?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 3
+      },
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
