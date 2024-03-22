@@ -33,6 +33,8 @@ import java.util.regex.Pattern;
 import org.eclipse.jgit.storage.pack.PackStatistics;
 import org.eclipse.jgit.transport.PostUploadHook;
 
+import static com.gerritforge.ghs.gerrit.uploadpackmetrics.UploadPackMetricsLogger.uploadPackMetricsLogger;
+
 @Singleton
 class UploadPackPerRepoMetrics implements PostUploadHook {
   private static final String UPLOAD_PACK_METRICS_REPO = "uploadPackMetricsRepo";
@@ -90,20 +92,12 @@ class UploadPackPerRepoMetrics implements PostUploadHook {
   @Override
   public void onPostUpload(PackStatistics stats) {
     if (repoNamePattern.matcher(Thread.currentThread().getName()).find()) {
-      writeStatsToFile(stats);
+      logStats(stats);
       lastStats.set(stats);
     }
   }
 
-  public void writeStatsToFile(PackStatistics stats) {
-    try {
-      File file = new File("/tmp/test/folder/stats.txt");
-      file.getParentFile().mkdirs();
-      FileWriter myWriter = new FileWriter(file);
-      myWriter.write(String.format("%s - " + gsonFormatter.toJson(stats), System.currentTimeMillis()));
-      myWriter.close();
-    } catch(IOException ex) {
-      log.atSevere().withCause(ex).log("Error writing stats to file: %s", ex.getMessage());
-    }
+  public void logStats(PackStatistics stats) {
+      uploadPackMetricsLogger.info(String.format("%s - " + gsonFormatter.toJson(stats), System.currentTimeMillis()));
   }
 }
