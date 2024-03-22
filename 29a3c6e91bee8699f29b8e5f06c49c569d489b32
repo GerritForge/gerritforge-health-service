@@ -22,6 +22,29 @@
       },
       "revId": "29a3c6e91bee8699f29b8e5f06c49c569d489b32",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3c86150_2edf4451",
+        "filename": "doc/run_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-22T14:45:11Z",
+      "side": 1,
+      "message": "actually it\u0027s `ghs_upload_pack_metrics`, with underscores",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "29a3c6e91bee8699f29b8e5f06c49c569d489b32",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
