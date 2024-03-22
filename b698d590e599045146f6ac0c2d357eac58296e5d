@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb711b4a_eb271375",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1019805
+      },
+      "writtenOn": "2024-03-22T11:04:48Z",
+      "side": 1,
+      "message": "`work`",
+      "range": {
+        "startLine": 106,
+        "startChar": 30,
+        "endLine": 106,
+        "endChar": 35
+      },
+      "revId": "b698d590e599045146f6ac0c2d357eac58296e5d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
