@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d04ec4e_e7462b6e",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/Module.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T13:09:22Z",
+      "side": 1,
+      "message": "What benefits does this bring? I don\u0027t believe we need to implement start/stop, which extending LifecycleModule would require.",
+      "parentUuid": "5ca3c52b_4244db1b",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4f73a33_441eaada",
         "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/Module.java",
         "patchSetId": 8
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c31e3d0f_01dbf9c6",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/resources/Documentation/metrics-logging.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T13:09:22Z",
+      "side": 1,
+      "message": "It\u0027s whatever we configure in `uploadPackMetricsRepo`, which is currently defined as: \"The name of the repository for which to expose metrics for\"",
+      "parentUuid": "97079a12_e97e1685",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b073dc48_21c5dacd",
         "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
         "patchSetId": 8
@@ -83,6 +131,24 @@
       "writtenOn": "2024-03-26T12:49:01Z",
       "side": 1,
       "message": "Why is this needed?",
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0435aad5_4985bbf3",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T13:09:22Z",
+      "side": 1,
+      "message": "Interesting, I thought as we where checking that the file actually existed we\u0027d need to write it on local disk.\n\nTurns out it\u0027s not needed, thanks.",
+      "parentUuid": "b073dc48_21c5dacd",
       "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
@@ -124,6 +190,30 @@
       "side": 1,
       "message": "Why don\u0027t you get the logs directory from the `SitePaths.logs_dir`?",
       "parentUuid": "7d60847c_1882941e",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 5
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3facdb_ee4dd446",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T13:09:22Z",
+      "side": 1,
+      "message": "Where do I get an instance of \"SitePaths\" from though? Doesn\u0027t look like the test daemon exposes one?",
+      "parentUuid": "91f8e292_27b7ae45",
       "range": {
         "startLine": 20,
         "startChar": 4,
