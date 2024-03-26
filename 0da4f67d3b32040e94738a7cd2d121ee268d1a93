@@ -22,6 +22,30 @@
       },
       "revId": "0da4f67d3b32040e94738a7cd2d121ee268d1a93",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c06380c_c7c87fe1",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackMetricsLogger.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "We can start with these three ones and add more later as a follow-up.",
+      "parentUuid": "f09abd0a_8e45bd6b",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 3
+      },
+      "revId": "0da4f67d3b32040e94738a7cd2d121ee268d1a93",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

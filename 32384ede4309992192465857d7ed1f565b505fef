@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "104be88a_e41b5861",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "If you call it directly from tests, it is needed, otherwise, it isn\u0027t. It\u0027s more a sentinel warning for the reviewer.",
+      "parentUuid": "1748e0b5_e0dcff28",
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "867e88c0_12ae90f9",
         "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
         "patchSetId": 2

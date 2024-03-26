@@ -3,6 +3,92 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ca3c52b_4244db1b",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/Module.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "Use `LifecycleModule` if you need to listen to the start/stop events.\n\n\n```suggestion\npublic class Module extends LifecycleModule {\n```",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f73a33_441eaada",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/Module.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "Just use `listener()` from the `LifecycleModule`.\n\n\n```suggestion\n    listener().to(UploadPackMetricsLogger.class);\n```",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 75
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97079a12_e97e1685",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/resources/Documentation/metrics-logging.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "Is this the repository or the project?",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b073dc48_21c5dacd",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d60847c_1882941e",
         "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
         "patchSetId": 8
@@ -14,6 +100,30 @@
       "writtenOn": "2024-03-26T11:48:54Z",
       "side": 1,
       "message": "Please somebody tell me there\u0027s a better way of finding the logs folder when using the Test Daemon?",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 5
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f8e292_27b7ae45",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T12:49:01Z",
+      "side": 1,
+      "message": "Why don\u0027t you get the logs directory from the `SitePaths.logs_dir`?",
+      "parentUuid": "7d60847c_1882941e",
       "range": {
         "startLine": 20,
         "startChar": 4,
