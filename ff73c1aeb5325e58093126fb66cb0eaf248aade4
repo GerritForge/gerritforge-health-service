@@ -72,6 +72,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac850a8_736cb3be",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/Module.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T13:31:53Z",
+      "side": 1,
+      "message": "My bad, got confused with LifecycleListener.",
+      "parentUuid": "18a8d334_36d5248d",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f73a33_441eaada",
