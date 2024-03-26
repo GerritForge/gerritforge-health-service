@@ -16,6 +16,24 @@
       "message": "Just one observation. Do we want to keep the GHS name in the name of the metric? I am wondering if we might end up using this plugin without GHS, in which case it might confuses things.",
       "revId": "95233f7c55733dae9b05dd9ecbbf8d66ca810991",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ddfc50_c57a78f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-26T13:02:13Z",
+      "side": 1,
+      "message": "Agreed, the `ghs` is already in the plugin name, let\u0027s get rid of it in the metric, but it should be a separate change IMHO because this is purely a plugin renaming change.",
+      "parentUuid": "f39be355_9c41fad8",
+      "revId": "95233f7c55733dae9b05dd9ecbbf8d66ca810991",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
