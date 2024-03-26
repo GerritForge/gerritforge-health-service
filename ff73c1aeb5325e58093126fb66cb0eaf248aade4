@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d60847c_1882941e",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T11:48:54Z",
+      "side": 1,
+      "message": "Please somebody tell me there\u0027s a better way of finding the logs folder when using the Test Daemon?",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 5
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
