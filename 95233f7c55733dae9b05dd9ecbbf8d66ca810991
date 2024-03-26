@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39be355_9c41fad8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2024-03-26T12:51:54Z",
+      "side": 1,
+      "message": "Just one observation. Do we want to keep the GHS name in the name of the metric? I am wondering if we might end up using this plugin without GHS, in which case it might confuses things.",
+      "revId": "95233f7c55733dae9b05dd9ecbbf8d66ca810991",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
