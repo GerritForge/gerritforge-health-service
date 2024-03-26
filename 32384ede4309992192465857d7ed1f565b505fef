@@ -18,6 +18,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef9645a_ffb3f696",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T11:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6747c678_4a0a5402",
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d7e94e8_382a012f",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-22T15:15:00Z",
       "side": 1,
       "message": "Add `@VisibleForTesting`",
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1748e0b5_e0dcff28",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T11:19:27Z",
+      "side": 1,
+      "message": "Why is it needed?",
+      "parentUuid": "1d7e94e8_382a012f",
       "revId": "32384ede4309992192465857d7ed1f565b505fef",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
@@ -58,6 +94,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "773bf753_5d91f353",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T11:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "867e88c0_12ae90f9",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b175100_5db6625e",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-03-22T15:15:00Z",
       "side": 1,
       "message": "Why do we need this subclass of `UpoadPackPerRepoMetrics`?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 3
+      },
+      "revId": "32384ede4309992192465857d7ed1f565b505fef",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61bc5ff_bb45d501",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1020677
+      },
+      "writtenOn": "2024-03-26T11:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b175100_5db6625e",
       "range": {
         "startLine": 30,
         "startChar": 0,
