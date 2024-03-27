@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7a83140_af43465f",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/BUILD",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: call each IT test in a loop so that:\n* it runs faster\n* failures are easier to spot",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d0fad3_775065a7",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackMetricsLogger.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0bacce6_bf56135d",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackMetricsLogger.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "reformat with GJF",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 6
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd566e0_dc36b8fe",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackMetricsLogger.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: none of it has to be public",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 9
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f786e6d2_879cf7ce",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: can be final",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a36f4f9_b43d72a4",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "can be final",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b44cee35_0e27d938",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "misformated lines",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 9
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be7cefb_ceb5a833",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: not even needed",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ec2a52_89e4fcac",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetrics.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: can be private",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 9
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7445c41d_76574f70",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/resources/Documentation/metrics-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: reformat to match the other files",
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14153d47_ff17b9bc",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "missing the copyright header",
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "602fdc81_86b91ee7",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "nit: rename it to IT as it is spawning Gerrit instance",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 41
+      },
+      "revId": "acbe20f96070d2fa863921a61a3729c90ceb0b86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

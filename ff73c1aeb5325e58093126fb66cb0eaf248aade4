@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae864ae2_a5bc7a39",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/main/resources/Documentation/metrics-logging.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "I would stick to the repository, after all this is about _git repository upload pack_, @luca.milanesio@gmail.com WDYT?",
+      "parentUuid": "c31e3d0f_01dbf9c6",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b073dc48_21c5dacd",
         "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
         "patchSetId": 8
@@ -304,6 +328,30 @@
       "side": 1,
       "message": "Where do I get an instance of \"SitePaths\" from though? Doesn\u0027t look like the test daemon exposes one?",
       "parentUuid": "91f8e292_27b7ae45",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 5
+      },
+      "revId": "ff73c1aeb5325e58093126fb66cb0eaf248aade4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "138faeb2_574a37e5",
+        "filename": "components/collectors/gerrit/ghs-upload-pack-metrics/src/test/java/com/gerritforge/ghs/gerrit/uploadpackmetrics/UploadPackPerRepoMetricsTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1019121
+      },
+      "writtenOn": "2024-03-27T07:51:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3facdb_ee4dd446",
       "range": {
         "startLine": 20,
         "startChar": 4,
