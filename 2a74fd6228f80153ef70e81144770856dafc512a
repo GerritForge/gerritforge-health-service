@@ -16,6 +16,23 @@
       "message": "Can you add a README on what requirement is needed and what command needs to be executed to format?",
       "revId": "2a74fd6228f80153ef70e81144770856dafc512a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28cc6877_42534b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019805
+      },
+      "writtenOn": "2024-03-27T11:32:31Z",
+      "side": 1,
+      "message": "About formatting (and linting) - I\u0027d like to suggest the [ruff](https://github.com/astral-sh/ruff).\n\nThis is written in rust and is much faster than all current alternatives, making IDE plugins\u0027 usability excellent. It also works as a drop-in replacement for black.\n\nIt offers [several installation options](https://docs.astral.sh/ruff/) (I used `pipx` on Ubuntu).\n\nDoesn\u0027t matter for this ticket as we\u0027re only reformatting, but if we do this in CI at some point the tool itself becomes relevant.",
+      "revId": "2a74fd6228f80153ef70e81144770856dafc512a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
